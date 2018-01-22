@@ -2,31 +2,38 @@ var MOCK_STATUS_UPDATES = {
     "statusUpdates": [
         {
             "id": "1111111",
-            "text": "Can't believe how much fun I'm having.",
+            "text": "This is the first post on BubbleUp!.",
             "friendId": "aaaaaa",
             "friendName": "John Doe",
             "publishedAt": 1470016976609
         },
         {
             "id": "2222222",
-            "text": "Have FOMO? Well you SHOULD!",
+            "text": "And this is the second one!",
             "friendId": "bbbbbbb",
             "friendName": "Jane Doe",
             "publishedAt": 1470012976609
         },
         {
             "id": "333333",
-            "text": "They're giving out immortality and free $$$ where I am.",
+            "text": "Working on the client-side js to make things work.",
             "friendId": "cccc",
             "friendName": "Jim Doe",
             "publishedAt": 1470011976609
         },
         {
             "id": "4444444",
-            "text": "humble brag humble brag humble brag",
+            "text": "Kind of have to refresh my mind on a lot of this stuff",
             "friendId": "ddddd",
             "friendName": "Jackie Doe",
             "publishedAt": 1470009976609
+        },
+        {
+            "id": "5555555",
+            "text": "Since Ajax and jQuery have not been on my mind...",
+            "friendId": "eeeee",
+            "friendName": "A Deer",
+            "publishedAt": 1470000976609
         }
     ]
 };
