@@ -39,7 +39,7 @@ var MOCK_STATUS_UPDATES = {
 };
 
 function getRecentStatusUpdates(callbackFn) {
-    setTimeout(function(){ callbackFn(MOCK_STATUS_UPDATES)}, 100);
+    setTimeout(function(){ callbackFn(MOCK_STATUS_UPDATES)}, 1000);
 }
 
 // this function stays the same when we connect
