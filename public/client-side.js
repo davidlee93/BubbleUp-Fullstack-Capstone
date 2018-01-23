@@ -1,5 +1,5 @@
-var MOCK_STATUS_UPDATES = {
-    "statusUpdates": [
+var MOCK_POST_UPDATES = {
+    "postUpdates": [
         {
             "id": "1111111",
             "text": "This is the first post on BubbleUp!.",
@@ -38,25 +38,57 @@ var MOCK_STATUS_UPDATES = {
     ]
 };
 
-function getRecentStatusUpdates(callbackFn) {
-    setTimeout(function(){ callbackFn(MOCK_STATUS_UPDATES)}, 1000);
+function getRecentPostUpdates(callbackFn) {
+    setTimeout(function(){ callbackFn(MOCK_POST_UPDATES)}, 1000);
 }
 
 // this function stays the same when we connect
 // to real API later
-function displayStatusUpdates(data) {
-    for (index in data.statusUpdates) {
+function displayPostUpdates(data) {
+    for (index in data.postUpdates) {
        $('body').append(
-        '<p>' + data.statusUpdates[index].text + '</p>');
+        '<p>' + data.postUpdates[index].text + '</p>');
     }
 }
 
 // this function can stay the same even when we
 // are connecting to real API
-function getAndDisplayStatusUpdates() {
-    getRecentStatusUpdates(displayStatusUpdates);
+function getAndDisplayPostUpdates() {
+    getRecentPostUpdates(displayPostUpdates);
 }
 
 $(function() {
-    getAndDisplayStatusUpdates();
+    getAndDisplayPostUpdates();
 })
+
+
+
+
+
+// function displayData(data) {
+//     //console.log(data)
+//     const posts = data.map(post => {
+//         return `<div>${post.name}</div>`
+//     })
+//     let div = document.createElement("div");
+//     div.innerHTML = posts;
+//     document.getElementById('posts').appendChild(div)
+// }
+
+// function getPosts() {
+//     fetch('/posts')
+// .then(response => response.json())
+// .then(data => displayData(data))
+// .catch(error => console.log(error))
+// }
+
+// function deletePost(id){
+//     fetch(`/posts/${id}`)
+//     .then()
+// }
+
+// getPosts()
+
+
+
+

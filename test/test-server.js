@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 describe('index page', function() {
 
-	it('should return index.html', function() {
+	it('should return index.ejs', function() {
 		return chai.request(app)
 			.get('/')
 			.then(function (res) {
@@ -17,3 +17,15 @@ describe('index page', function() {
 		});
 	});
 });
+
+describe('about page', function() {
+
+	it('should return about.ejs', function() {
+		return chai.request(app)
+			.get('/about')
+			.then(function (res) {
+				res.should.have.status(200);
+		});
+	});
+});
+
