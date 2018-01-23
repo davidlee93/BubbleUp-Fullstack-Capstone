@@ -18,11 +18,11 @@ describe('index page', function() {
 	});
 });
 
-describe('about page', function() {
+describe('bubbles page', function() {
 
-	it('should return about.ejs', function() {
+	it('should return bubbles.ejs', function() {
 		return chai.request(app)
-			.get('/about')
+			.get('/bubbles')
 			.then(function (res) {
 				res.should.have.status(200);
 		});

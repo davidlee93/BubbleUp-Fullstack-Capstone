@@ -32,13 +32,17 @@ var MOCK_POST_UPDATES = {
             "id": "5555555",
             "text": "Since Ajax and jQuery have not been on my mind...",
             "friendId": "eeeee",
-            "friendName": "A Deer",
+            "friendName": "Dear Doe",
             "publishedAt": 1470000976609
         }
     ]
 };
 
 function getRecentPostUpdates(callbackFn) {
+    // $('.bubbles-onclick').onclick(event => {
+    //     callbackFn(MOCK_POST_UPDATES);
+    // });
+
     setTimeout(function(){ callbackFn(MOCK_POST_UPDATES)}, 1000);
 }
 
@@ -47,7 +51,12 @@ function getRecentPostUpdates(callbackFn) {
 function displayPostUpdates(data) {
     for (index in data.postUpdates) {
        $('body').append(
-        '<p>' + data.postUpdates[index].text + '</p>');
+        `<div class="post col-md-4">
+            <p>${data.postUpdates[index].friendName}</p>
+            <p>${data.postUpdates[index].text}</p>
+            <p>${data.postUpdates[index].publishedAt}</p>
+        </div>`
+        );
     }
 }
 
