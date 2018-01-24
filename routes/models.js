@@ -14,13 +14,13 @@ const bubbleUpPostSchema = mongoose.Schema({
 });
 
 bubbleUpPostSchema.virtual('authorName').get(function() {
-	return `${this.author.firstName} ${this.author.lastName}`.trim();
+	return `${this.name.firstName} ${this.name.lastName}`.trim();
 });
 
 bubbleUpPostSchema.methods.serialize = function() {
 	return {
 		id: this._id;
-		author: this.authorName,
+		name: this.authorName,
 		category: this.category,
 		content: this.content,
 		created: this.created
