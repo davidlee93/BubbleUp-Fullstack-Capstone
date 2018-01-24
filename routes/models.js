@@ -19,7 +19,7 @@ bubbleUpPostSchema.virtual('authorName').get(function() {
 
 bubbleUpPostSchema.methods.serialize = function() {
 	return {
-		id: this._id;
+		id: this._id,
 		name: this.authorName,
 		category: this.category,
 		content: this.content,

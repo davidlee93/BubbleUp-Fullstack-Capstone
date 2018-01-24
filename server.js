@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const { DATABASE_URL, PORT } = require('./routes/config');
-const { BubbleUpPost } = require('./models');
+const { BubbleUpPost } = require('./routes/models');
 
 
 const app = express();
