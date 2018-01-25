@@ -1,18 +1,22 @@
 'use strict'
 
+const { BubbleUpPost } = require('./models'); 
+
 module.exports = function(app) {
     app.get('/', function(req, res) {
         res.render('pages/index');
     });
 
-    app.get('/bubbles', function(req, res) {
-        res.render('pages/bubbles');
-    });
+//    app.get('/bubbles', function(req, res) {
+//        res.render('pages/bubbles');
+//    });
     app.get('/bubbles', (req, res) => {
     	BubbleUpPost
     		.find()
     		.limit(3)
     		.then(posts => {
+    			console.log('fetching posts')
+    			console.log(posts)
     			res.json(posts.map(post => post.serialize()));
     		})
     		.catch(err => {

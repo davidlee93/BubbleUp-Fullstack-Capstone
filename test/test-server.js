@@ -42,7 +42,7 @@ function seedBubbleUpPostData() {
 
 describe('bubbleup posts API resource', function () {
 	before(function () {
-		return runServer(TEST_DATABASE_URL);
+		return runServer(TEST_DATABASE_URL, 8081);
 	});
 
 	beforeEach(function () {
@@ -185,29 +185,7 @@ describe('bubbleup posts API resource', function () {
 	// 				should.not.exist(_post);
 	// 			});
 	// 	});
-	// });
-});
-
-
-describe('index page', function() {
-
-	it('should return index.ejs', function() {
-		return chai.request(app)
-			.get('/')
-			.then(function (res) {
-				res.should.have.status(200);
-		});
 	});
 });
 
-describe('bubbles page', function() {
-
-	it('should return bubbles.ejs', function() {
-		return chai.request(app)
-			.get('/bubbles')
-			.then(function (res) {
-				res.should.have.status(200);
-		});
-	});
-});
 

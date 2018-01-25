@@ -1,35 +1,65 @@
 {
-    "id": "1111111",
-    "text": "This is the first post on BubbleUp!.",
-    "friendId": "aaaaaa",
-    "friendName": "John Doe",
-    "publishedAt": 1470016976609
+    "_id": {
+        "$oid": "5a67e5d1f8ee581f1bafc385"
+    },
+    "name": {
+        "firstName": "Test",
+        "lastName": "Testerton"
+    },
+    "category": "Funny",
+    "content": "https://youtuve.com/video",
+    "content-type": "Video",
+    "created": "1470012976609"
 }
 {
-    "id": "2222222",
-    "text": "And this is the second one!",
-    "friendId": "bbbbbbb",
-    "friendName": "Jane Doe",
-    "publishedAt": 1470012976609
+    "_id": {
+        "$oid": "5a67e5d1f8ee581f1bafc386"
+    },
+    "name": {
+        "firstName": "Test2",
+        "lastName": "Testerton2"
+    },
+    "category": "Motivational",
+    "content": "https://youtuve.com/video/motivational",
+    "content-type": "Video",
+    "created": "1470012976610"
 }
 {
-    "id": "333333",
-    "text": "Working on the client-side js to make things work.",
-    "friendId": "cccc",
-    "friendName": "Jim Doe",
-    "publishedAt": 1470011976609
+    "_id": {
+        "$oid": "5a67e5d1f8ee581f1bafc387"
+    },
+    "name": {
+        "firstName": "Test3",
+        "lastName": "Testerton3"
+    },
+    "category": "Thoughtful",
+    "content": "Man does not live on bread alone",
+    "content-type": "quote",
+    "created": "1470012976611"
 }
 {
-    "id": "4444444",
-    "text": "Kind of have to refresh my mind on a lot of this stuff",
-    "friendId": "ddddd",
-    "friendName": "Jackie Doe",
-    "publishedAt": 1470009976609
+    "_id": {
+        "$oid": "5a67e5d1f8ee581f1bafc388"
+    },
+    "name": {
+        "firstName": "Test4",
+        "lastName": "Testerton4"
+    },
+    "category": "Reminder",
+    "content": "Got to do ____ on a daily basis",
+    "content-type": "text",
+    "created": "1470012976612"
 }
 {
-    "id": "5555555",
-    "text": "Since Ajax and jQuery have not been on my mind...",
-    "friendId": "eeeee",
-    "friendName": "Dear Doe",
-    "publishedAt": 1470000976609
+    "_id": {
+        "$oid": "5a67e5d1f8ee581f1bafc389"
+    },
+    "name": {
+        "firstName": "Test5",
+        "lastName": "Testerton5"
+    },
+    "category": "Scripture",
+    "content": "Rejoice in the Lord always; again I will say, rejoice. Let your reasonableness be known to everyone. The Lord is at hand; do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus - Philippains 4:4-7",
+    "content-type": "quote",
+    "created": "1470012976613"
 }

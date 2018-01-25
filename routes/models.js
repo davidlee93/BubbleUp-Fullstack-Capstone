@@ -9,6 +9,7 @@ const bubbleUpPostSchema = mongoose.Schema({
 		lastName: String
 	},
 	category: {type: String, required: true},
+	contentType: {type: String},
 	content: {type: String},
 	created: {type: Date, default: Date.now}
 });
@@ -22,11 +23,12 @@ bubbleUpPostSchema.methods.serialize = function() {
 		id: this._id,
 		name: this.authorName,
 		category: this.category,
+		contentType: this.contentType,
 		content: this.content,
 		created: this.created
 	};
 };
 
-const BubbleUpPost = mongoose.model('BubbleUpPost', bubbleUpPostSchema);
+const BubbleUpPost = mongoose.model('Post', bubbleUpPostSchema);
 
 module.exports = {BubbleUpPost};
