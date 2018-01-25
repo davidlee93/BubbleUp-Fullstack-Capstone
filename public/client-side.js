@@ -5,7 +5,7 @@ var MOCK_POST_UPDATES = {
             "$oid": "5a67e5d1f8ee581f1bafc385"
         },
         "name": {
-            "firstName": "Test1,
+            "firstName": "Test1",
             "lastName": "Testerton1"
         },
         "category": "Funny",
