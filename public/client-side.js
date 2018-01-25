@@ -1,9 +1,6 @@
 var MOCK_POST_UPDATES = {
     "postUpdates": [
     {
-        "_id": {
-            "$oid": "5a67e5d1f8ee581f1bafc385"
-        },
         "name": {
             "firstName": "Test1",
             "lastName": "Testerton1"
@@ -14,9 +11,6 @@ var MOCK_POST_UPDATES = {
         "created": "1470012976609"
     }
     {
-        "_id": {
-            "$oid": "5a67e5d1f8ee581f1bafc386"
-        },
         "name": {
             "firstName": "Test2",
             "lastName": "Testerton2"
@@ -27,22 +21,16 @@ var MOCK_POST_UPDATES = {
         "created": "1470012976610"
     }
     {
-        "_id": {
-            "$oid": "5a67e5d1f8ee581f1bafc387"
-        },
         "name": {
             "firstName": "Test3",
             "lastName": "Testerton3"
         },
         "category": "Thoughtful",
-        "content": "Man does not live on bread alone",
+        "content": "Man does not live by bread alone",
         "contentType": "quote",
         "created": "1470012976611"
     }
     {
-        "_id": {
-            "$oid": "5a67e5d1f8ee581f1bafc388"
-        },
         "name": {
             "firstName": "Test4",
             "lastName": "Testerton4"
@@ -53,9 +41,6 @@ var MOCK_POST_UPDATES = {
         "created": "1470012976612"
     }
     {
-        "_id": {
-            "$oid": "5a67e5d1f8ee581f1bafc389"
-        },
         "name": {
             "firstName": "Test5",
             "lastName": "Testerton5"
