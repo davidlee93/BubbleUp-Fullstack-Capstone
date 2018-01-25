@@ -26,7 +26,7 @@ function tearDownDB() {
 function seedBubbleUpPostData() {
 	console.info('seeding bubbleup post data');
 	const seedData = [];
-	for (let i = 0; i < 10; i++) {
+	for (let i = 0; i < 5; i++) {
 		seedData.push({
 			name: {
 				firstname: faker.name.firstName(),
@@ -97,7 +97,7 @@ describe('bubbleup posts API resource', function () {
 	// 				resPost.name.should.equal(post.authorName);
 	// 			});
 	// 	});
-	// });
+	});
 
 	// describe('POST endpoint', function () {
 	// 	it('should add a new bubbleup post', function () {
@@ -185,7 +185,6 @@ describe('bubbleup posts API resource', function () {
 	// 				should.not.exist(_post);
 	// 			});
 	// 	});
-	});
 });
 
 

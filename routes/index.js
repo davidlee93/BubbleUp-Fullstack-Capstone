@@ -13,7 +13,7 @@ module.exports = function(app) {
     app.get('/bubbles', (req, res) => {
     	BubbleUpPost
     		.find()
-    		.limit(3)
+    		.limit(5)
     		.then(posts => {
     			console.log('fetching posts')
     			console.log(posts)
