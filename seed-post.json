@@ -5,7 +5,7 @@
     },
     "category": "Funny",
     "content": "https://youtuve.com/video",
-    "content-type": "Video",
+    "contentType": "Video",
     "created": "1470012976609"
 }
 {
@@ -15,7 +15,7 @@
     },
     "category": "Motivational",
     "content": "https://youtuve.com/video/motivational",
-    "content-type": "Video",
+    "contentType": "Video",
     "created": "1470012976610"
 }
 {
@@ -25,7 +25,7 @@
     },
     "category": "Thoughtful",
     "content": "Man does not live by bread alone",
-    "content-type": "quote",
+    "contentType": "quote",
     "created": "1470012976611"
 }
 {
@@ -35,7 +35,7 @@
     },
     "category": "Reminder",
     "content": "Got to do ____ on a daily basis",
-    "content-type": "text",
+    "contentType": "text",
     "created": "1470012976612"
 }
 {
@@ -45,6 +45,6 @@
     },
     "category": "Scripture",
     "content": "Rejoice in the Lord always; again I will say, rejoice. Let your reasonableness be known to everyone. The Lord is at hand; do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus - Philippains 4:4-7",
-    "content-type": "quote",
+    "contentType": "quote",
     "created": "1470012976613"
 }
