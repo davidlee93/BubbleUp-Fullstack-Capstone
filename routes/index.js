@@ -7,17 +7,23 @@ module.exports = function(app) {
         res.render('pages/index');
     });
 
-//    app.get('/bubbles', function(req, res) {
-//        res.render('pages/bubbles');
-//    });
+    // app.get('/bubbles', function(req, res) {
+    //    res.render('pages/bubbles');
+    // });
+
     app.get('/bubbles', (req, res) => {
     	BubbleUpPost
     		.find()
-    		.limit(5)
+    		.limit(10)
     		.then(posts => {
     			console.log('fetching posts')
     			console.log(posts)
-    			res.json(posts.map(post => post.serialize()));
+    			if(!(req.get('Content-Type') === 'application/json')) {
+    				res.render('pages/bubbles');
+    			} else {
+    				res.json(posts.map(post => post.serialize()));
+    			}
+    			
     		})
     		.catch(err => {
     			console.error(err);
