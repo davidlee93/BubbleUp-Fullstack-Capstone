@@ -11,16 +11,35 @@
         <div class="container" id="bubbles">
             <div class="row">
                 <h2 class="text-center">Bubbles Page</h2>
-                    <div class="col-xs-12">
-                        <p>Bubbles</p>
-                        <p>
-                            <a href="#" class="createBubble">Create bubble</a>
-                        </p>
+                <div class="col-xs-12">
+                    <p>Bubbles</p>
+                    <div id="createpanel">
+                        <a href="#" class="createBubble">Create bubble</a>
+                        <div class="createform" id="createform" tabindex="-1" data-backdrop="false">
+                            <form>
+                                <label id="createModal">Create Bubble
+                                </label>
+                                <br>
+                                <label for="title">Title:</label>
+                                <input type="text" name="title" id="title" required="required">
+                                <label for="category">Category:</label>
+                                <input type="text" name="category" id="category" required>
+                                <label for="content">Content:</label>
+                                <input type="text" name="content" id="content" required>
+                                <label for="contentType">Content Type:</label>
+                                <input type="text" name="contentType" id="contentType">
+                                <div align="center">
+                                    <input type="submit" value="Create" class="btnCREATE">
+                                    <input type="button" value="Cancel" class="btnCANCEL">
+                                </div>
+                            </form>
+                        </div>
                     </div>
+                </div>
 
-                    <div class="bubbles">
-                        
-                    </div>
+                <div class="bubbles">
+                    
+                </div>
 
             </div>
         </div><!-- end of content -->

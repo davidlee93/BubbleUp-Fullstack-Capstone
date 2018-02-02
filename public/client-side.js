@@ -20,19 +20,12 @@ function getBubbles() {
     .catch(error => console.log(error));
 }
 
-function createBubble() {
-
-    const bubble = {
-        "title": "Edit Me",
-        "category": "Needs Edit",
-        "content": "Bubble needs editing",
-        "contentType": "text",
-        "created": "just now"
-    }
+function createBubble(newBubble) {
+    console.log(newBubble);
     const options = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(bubble)
+        body: JSON.stringify(newBubble)
     }
     fetch(`/bubbles`, options)
     .then(response => response.json())
@@ -55,7 +48,7 @@ function displayNewBubble(data) {
                 <!-- Dialog Box-->
                 <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
                     <form>
-                        <label id="editModal">Edit Page
+                        <label id="editModal">Edit Bubble
                         </label>
                         <br>
                         <label for="title">Title:</label>
@@ -119,7 +112,7 @@ function displayBubbles(data) {
                 <!-- Dialog Box-->
                 <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
                     <form>
-                        <label id="editModal">Edit Page
+                        <label id="editModal">Edit Bubble
                         </label>
                         <br>
                         <label for="title">Title:</label>
@@ -181,9 +174,28 @@ $(document).on('click', '.deleteBubble', function(){
     }
 });
 
-//createBubble
-$(document).on('click', '.createBubble', function(){
+//create MODAL
+$(document).on('click', '.createBubble', function() {
     event.preventDefault();
-    createBubble();
+    $('#createform input[type=text]').val('');
+    $(this).next("#createform").show(500);
+    $('.btnCANCEL').click(function(){
+        $(this).closest(".createform").hide(400);
+    })
 });
+
+//createBubble 
+//.on('submit') dont work!
+$(document).on('click', '.btnCREATE', function() {
+    const create = {
+        "title": $(`#title`).val(),
+        "category": $(`#category`).val(),
+        "content": $(`#content`).val(),
+        "contentType": $(`#contentType`).val()
+    };
+    state.currentBubble = create;
+    console.log(state.currentBubble);
+    createBubble(state.currentBubble);
+    $(this).closest('.createform').hide(400);
+})
 

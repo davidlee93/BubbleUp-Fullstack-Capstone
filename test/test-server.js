@@ -28,12 +28,10 @@ function seedBubbleUpPostData() {
 	const seedData = [];
 	for (let i = 0; i < 5; i++) {
 		seedData.push({
-			name: {
-				firstname: faker.name.firstName(),
-				lastname: faker.name.lastName()
-			},
+		title: faker.name.firstName(),
 		category: faker.lorem.sentence(),
-		content: faker.lorem.text()
+		content: faker.lorem.text(),
+		contentType: faker.lorem.text()
 		});
 	}
 	return BubbleUpPost.insertMany(seedData);
@@ -58,20 +56,20 @@ describe('bubbleup posts API resource', function () {
 	});
 
 	describe('GET endpoint', function () {
-		it('should return all exisiting posts', function() {
+		it('should return all existing posts', function() {
 			let res;
 			return chai.request(app)
 				.get('/bubbles')
 				.then(_res => {
 					res = _res;
 					res.should.have.status(200);
-					res.body.should.have.length.of.at.least(1);
+					// res.body.should.have.length.of.at.least(1);
 
 					return BubbleUpPost.count();
 				})
-				// .then(count => {
-				// 	res.body.should.have.length.of(count);
-				// });
+				.then(count => {
+					res.body.should.have.length.of(count);
+				});
 				// ABOVE GIVES "TypeError: res.body.should.have.length.of is not a function"
 		});
 
@@ -87,7 +85,7 @@ describe('bubbleup posts API resource', function () {
 
 					res.body.forEach(function (post) {
 						post.should.be.a('object');
-						post.should.include.keys('id', 'category', 'content', 'name', 'created');
+						post.should.include.keys('id', 'category', 'contentType', 'content', 'title', 'created');
 					});
 					resPost = res.body[0];
 					return BubbleUpPost.findById(resPost.id);
@@ -95,7 +93,8 @@ describe('bubbleup posts API resource', function () {
 				.then(post => {
 					resPost.category.should.equal(post.category);
 					resPost.content.should.equal(post.content);
-					resPost.name.should.equal(post.authorName);
+					resPost.title.should.equal(post.title);
+					resPost.contentType.should.equal(post.contentType);
 				});
 		});
 	});
@@ -104,11 +103,9 @@ describe('bubbleup posts API resource', function () {
 		it('should add a new bubbleup post', function () {
 			const newPost = {
 				category: faker.lorem.sentence(),
-				name: {
-					firstName: faker.name.firstName(),
-					lastName: faker.name.lastName()
-				},
-				content: faker.lorem.text()
+				title: faker.name.firstName(),
+				content: faker.lorem.text(),
+				contentType: faker.lorem.text()
 			};
 			return chai.request(app)
 				.post('/bubbles')
@@ -118,19 +115,19 @@ describe('bubbleup posts API resource', function () {
 					res.should.be.json;
 					res.body.should.be.a('object');
 					res.body.should.include.keys(
-						'id', 'category', 'content', 'name', 'created');
+						'id', 'category', 'contentType', 'content', 'title', 'created');
 					res.body.category.should.equal(newPost.category);
 					res.body.id.should.not.be.null;
-					res.body.name.should.equal(
-						`${newPost.name.firstName} ${newPost.name.lastName}`);
+					res.body.title.should.equal(newPost.title);
 					res.body.content.should.equal(newPost.content);
+					res.body.contentType.should.equal(newPost.contentType);
 					return BubbleUpPost.findById(res.body.id);
 				})
 				.then(function (post) {
 					post.category.should.equal(newPost.category);
 					post.content.should.equal(newPost.content);
-					post.name.firstName.should.equal(newPost.name.firstName);
-					post.name.lastName.should.equal(newPost.name.lastName);
+					post.title.should.equal(newPost.title);
+					post.contentType.should.equal(newPost.contentType);
 				});
 		});
 	});
@@ -160,10 +157,8 @@ describe('bubbleup posts API resource', function () {
 			const updateData = {
 				category: 'cats cats cats',
 				content: 'dogs dogs dogs',
-				name: {
-					firstName: 'foo',
-					lastName: 'bar'
-				}
+				title: 'house pets',
+				contentType: 'text'
 			};
 
 			return BubbleUpPost
@@ -181,8 +176,8 @@ describe('bubbleup posts API resource', function () {
 				.then(post => {
 					post.category.should.equal(updateData.category);
 					post.content.should.equal(updateData.content);
-					post.name.firstName.should.equal(updateData.name.firstName);
-					post.name.lastName.should.equal(updateData.name.lastName);
+					post.title.should.equal(updateData.title);
+					post.contentType.should.equal(updateData.contentType);
 				});
 		});
 	});

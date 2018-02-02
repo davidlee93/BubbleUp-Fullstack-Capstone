@@ -53,9 +53,9 @@ module.exports = function(app) {
 
     	BubbleUpPost
     		.create({
+                title: req.body.title,
     			category: req.body.category,
     			content: req.body.content,
-    			title: req.body.title,
                 contentType: req.body.contentType
     		})
     		.then(bubbleUpPost => res.status(201).json(bubbleUpPost.serialize()))
