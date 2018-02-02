@@ -14,7 +14,7 @@ module.exports = function(app) {
     app.get('/bubbles', (req, res) => {
     	BubbleUpPost
     		.find()
-    		.limit(10)
+    		.limit(15)
     		.then(posts => {
     			console.log('fetching posts')
     			console.log(posts)
@@ -41,7 +41,7 @@ module.exports = function(app) {
     });
 
     app.post('/bubbles', (req, res) => {
-    	const requiredFields = ['category', 'content', 'name'];
+    	const requiredFields = ['title', 'category', 'content', 'contentType'];
     	for (let i = 0; i < requiredFields.length; i++) {
     		const field = requiredFields[i];
     		if (!(field in req.body)) {
@@ -55,7 +55,8 @@ module.exports = function(app) {
     		.create({
     			category: req.body.category,
     			content: req.body.content,
-    			name: req.body.name
+    			title: req.body.title,
+                contentType: req.body.contentType
     		})
     		.then(bubbleUpPost => res.status(201).json(bubbleUpPost.serialize()))
     		.catch(err => {
@@ -83,16 +84,17 @@ module.exports = function(app) {
     		});
     	};
     	const updated = {};
-    	const updateableFields = ['category', 'content', 'name'];
+    	const updateableFields = ['title', 'category', 'content', 'contentType'];
     	updateableFields.forEach(field => {
     		if (field in req.body) {
     			updated[field] = req.body[field];
     		}
     	});
-
+        console.log(updated)
+        console.log(req.params.id)
     	BubbleUpPost
     		.findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
-    		.then(updatedPost => res.status(204).end())
+    		.then(updatedPost => res.json(updatedPost.serialize()))
     		.catch(err => res.status(500).json({ message: 'Internal server error' }));
     });
 };

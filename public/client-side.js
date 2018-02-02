@@ -1,90 +1,29 @@
-var MOCK_POSTS = {
-    "posts": [
-    {
-        "name": {
-            "firstName": "Test1",
-            "lastName": "Testerton1"
-        },
-        "category": "Funny",
-        "content": "https://youtuve.com/video",
-        "contentType": "Video",
-        "created": "1470012976609"
-    },
-    {
-        "name": {
-            "firstName": "Test2",
-            "lastName": "Testerton2"
-        },
-        "category": "Motivational",
-        "content": "https://youtuve.com/video/motivational",
-        "contentType": "Video",
-        "created": "1470012976610"
-    },
-    {
-        "name": {
-            "firstName": "Test3",
-            "lastName": "Testerton3"
-        },
-        "category": "Thoughtful",
-        "content": "Man does not live by bread alone",
-        "contentType": "quote",
-        "created": "1470012976611"
-    },
-    {
-        "name": {
-            "firstName": "Test4",
-            "lastName": "Testerton4"
-        },
-        "category": "Reminder",
-        "content": "Got to do ____ on a daily basis",
-        "contentType": "text",
-        "created": "1470012976612"
-    },
-    {
-        "name": {
-            "firstName": "Test5",
-            "lastName": "Testerton5"
-        },
-        "category": "Scripture",
-        "content": "Rejoice in the Lord always; again I will say, rejoice. Let your reasonableness be known to everyone. The Lord is at hand; do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus - Philippains 4:4-7",
-        "contentType": "quote",
-        "created": "1470012976613"
-    }]
-};
-
 // state object
 state = {
-    currentPost: {
+    currentBubble: {
+        title: '',
         category: '',
         content: '',
         contentType: ''
     },
-    posts: []
+    bubbles: []
 }
 
 // Call API functions
-function getPosts() {
-    // $.ajax({
-    //     method: "GET",
-    //     url: "/bubbles",
-    //     headers: { 'Content-Type': 'application/json'}
-    // }
+function getBubbles() {
     fetch('/bubbles', {
         method: "GET",
         headers: { 'Content-Type': 'application/json'}
     })
     .then(response => response.json())
-    .then(bubbles => displayPosts(bubbles))
+    .then(bubbles => displayBubbles(bubbles))
     .catch(error => console.log(error));
 }
 
 function createBubble() {
 
-    const post = {
-        "name": {
-            "firstName": "Edit",
-            "lastName": "Me"
-        },
+    const bubble = {
+        "title": "Edit Me",
         "category": "Needs Edit",
         "content": "Bubble needs editing",
         "contentType": "text",
@@ -93,76 +32,66 @@ function createBubble() {
     const options = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(post)
+        body: JSON.stringify(bubble)
     }
     fetch(`/bubbles`, options)
     .then(response => response.json())
-    .then(bubble => displayNewPost(bubble))
+    .then(bubble => displayNewBubble(bubble))
     .catch(error => console.log(error));
 }
 
-function displayNewPost(data) {
+function displayNewBubble(data) {
+    console.log(data);
+    console.log(data.id);
    $('.bubbles').append(
-    `<div class="post col-md-4">
-        <h3>${data.name}</h3>
-        <h3># ${data.category}</h3>
-        <p>${data.content}</p>
-        <h5>${data.created}</h5>
-        <a href="#" class="deleteBubble" data-id=${data.id}>Delete bubble</a>
-        <div id="panel">
-            <a href="#" class="editBubble">Edit bubble</a>
-            <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
-                <form>
-                    <label id="Edit Page">
-                    </label>
-                    <input type="text" name="category" id="name">
-                    <input type="text" name="content" id="content">
-                    <input type="text" name="contentType" id="contentType">
-                    <div align="center">
-                        <input type="button" value="Edit" id="btnOK" data-id=${data.id}>
-                    </div>
-                </form>
+        `<div class="post col-md-4">
+            <h3>${data.title}</h3>
+            <h3># ${data.category}</h3>
+            <p>${data.content}</p>
+            <h5>${data.created}</h5>
+            <a href="#" class="deleteBubble" data-id="${data.id}">Delete bubble</a>
+            <div id="panel">
+                <a href="#" data-id="${data.id}" class="editBubble">Edit bubble</a>
+                <!-- Dialog Box-->
+                <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
+                    <form>
+                        <label id="editModal">Edit Page
+                        </label>
+                        <br>
+                        <label for="title">Title:</label>
+                        <input type="text" id="${data.id}" name="title" class="title">
+                        <label for="category">Category:</label>
+                        <input type="text" id="${data.id}" name="category" class="category">
+                        <label for="content">Content:</label>
+                        <input type="text" id="${data.id}" name="content" class="content">
+                        <label for="contentType">Content Type:</label>
+                        <input type="text" id="${data.id}" name="contentType" class="contentType">
+                        <div align="center">
+                            <input type="button" value="Edit" class="btnOK" data-id="${data.id}">
+                            <input type="button" value="Cancel" class="btnCANCEL">
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div>
-    </div>`
+        </div>`
     );
 }
-// <input type="text" name="category" id="category" ex.value="Sports" />
-// <button id="create-post-button" onclick="grabPost()" /> 
- 
-//  function grabPost () {
-//     const post = {
-//            category: $("#category").val(),
-//            content: $("#content").val(),
-//            contentType: $("contentType").val()
-//     }
-//     // set state currentPost to post value from create form
-//     state.currentPost = post
-//  }
- 
-// $("#create-post-button").click({
-//     createPost(state.currentPost)
-// })
 
-function updatePost(id) {
+function updateBubble(id, updates) {
     
-    const post = {
-        "category": $("#category").val(),
-        "content": $("#content").val(),
-        "contentType": $("#contentType").val()
-    }
-    state.currentPost = post;
-
+    updates.id = id
+    console.log(id)
+    console.log(updates)
     const options = {
-        method: 'PUT',
+        method: "PUT",
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(state.currentPost)
+        body: JSON.stringify(updates)
     }
     fetch(`/bubbles/${id}`, options)
     .then(response => response.json())
-    .then(bubble => displayNewPost(bubble))
-    .catch(error => console.log(error));
-}
+    .then(json => console.log(json))
+    .catch(error => console.log(error)); 
+} 
 
 function deleteBubble(bubbleId) {
     console.log(bubbleId)
@@ -176,31 +105,34 @@ function deleteBubble(bubbleId) {
 }
 
 // display data from API
-function displayPosts(data) {
+function displayBubbles(data) {
     for (index in data) {
        $('.bubbles').append(
         `<div class="post col-md-4">
-            <h3>${data[index].name}</h3>
+            <h3>${data[index].title}</h3>
             <h3># ${data[index].category}</h3>
             <p>${data[index].content}</p>
             <h5>${data[index].created}</h5>
-            <a href="#" class="deleteBubble" data-id=${data[index].id}>Delete bubble</a>
+            <a href="#" class="deleteBubble" data-id="${data[index].id}">Delete bubble</a>
             <div id="panel">
-                <a href="#" class="editBubble">Edit bubble</a>
+                <a href="#" data-id="${data[index].id}" class="editBubble">Edit bubble</a>
                 <!-- Dialog Box-->
                 <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
                     <form>
                         <label id="editModal">Edit Page
                         </label>
                         <br>
+                        <label for="title">Title:</label>
+                        <input type="text" id="${data[index].id}" name="title" class="title">
                         <label for="category">Category:</label>
-                        <input type="text" name="category" id="category">
+                        <input type="text" id="${data[index].id}" name="category" class="category">
                         <label for="content">Content:</label>
-                        <input type="text" name="content" id="content">
+                        <input type="text" id="${data[index].id}" name="content" class="content">
                         <label for="contentType">Content Type:</label>
-                        <input type="text" name="contentType" id="contentType">
+                        <input type="text" id="${data[index].id}" name="contentType" class="contentType">
                         <div align="center">
-                            <input type="button" value="Edit" id="btnOK" data-id=${data[index].id}>
+                            <input type="button" value="Edit" class="btnOK" data-id="${data[index].id}">
+                            <input type="button" value="Cancel" class="btnCANCEL">
                         </div>
                     </form>
                 </div>
@@ -211,40 +143,45 @@ function displayPosts(data) {
 }
 
 // Event handlers to call API functions
-getPosts()
+getBubbles()
 
+//Edit Modal
 $(document).on('click', '.editBubble', function() {
     $("#myform input[type=text]").val('');
-    $("#myform").show(500);
+    $(this).next("div").show(500);
+    $(".btnCANCEL").click(function(){
+        $(this).closest(".dialog").hide(400);
+    });
 });
 
-$(document).on('click', '#btnOK', function() {
+//updateBubble
+$(document).on('click', '.btnOK', function() {
     const bubbleId = $(this).data('id');
-    updatePost(bubbleId);
-    $("#myform").hide(400);
+    const updates = {
+        "title": $(`#${bubbleId}.title`).val(),
+        "category": $(`#${bubbleId}.category`).val(),
+        "content": $(`#${bubbleId}.content`).val(),
+        "contentType": $(`#${bubbleId}.contentType`).val()
+    };
+    state.currentBubble = updates;
+    console.log(state.currentBubble);
+    updateBubble(bubbleId, state.currentBubble);
+    $(this).closest(".dialog").hide(400);
+    location.reload();
 });
 
-// $(function() {
-//     $(".edit-button").click(function() {
-//         $("#myform #valueFromMyButton").text($(this).val().trim());
-//         $("#myform input[type=text]").val('');
-//         $("#valueFromMyModal").val('');
-//         $("#myform").show(500);
-//     });
-//     $("#btnOK").click(function() {
-//         $("#valueFromMyModal").val($("#myform input[type=text]").val().trim());
-//         $("#myform").hide(400);
-//     });
-// });
-
+//deleteBubble
 $(document).on('click', '.deleteBubble', function(){
     event.preventDefault();
-    const bubbleId = $(this).data('id');
-    deleteBubble(bubbleId);
-    $(this).parent().remove();
-
+    const result = confirm("Deleting Bubble");
+    if (result) {
+        const bubbleId = $(this).data('id');
+        deleteBubble(bubbleId);
+        $(this).parent().remove();
+    }
 });
 
+//createBubble
 $(document).on('click', '.createBubble', function(){
     event.preventDefault();
     createBubble();
