@@ -32,6 +32,12 @@ body {
 .post {
     border: 1px black solid;
 }
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: grey;
+    opacity: .5; /* Firefox */
+}
+
 .createform {
   border:5px solid #666;
   padding:10px;
@@ -39,9 +45,10 @@ body {
   position:absolute;
   z-index: 9999;
   display:none;
+  width: 31%;
 }
 .createform label {
-  display: inline-block;
+  display: block;
   color:#cecece;
 }
 .dialog {
@@ -51,22 +58,29 @@ body {
   position:absolute;
   z-index: 9999;
   display:none;
+  width: 92.5%;
 }
 .dialog label {
-  display:inline-block;
+  display:block;
   color:#cecece;
-}  
+}
+select {
+  margin-bottom: 10px;
+}
 input[type=text] {
   border:1px solid #333;
   display:block;
-  margin:5px;
+  margin:5px 5px 5px 0px;
+}
+.splitModal {
+  width: 49%;
+  display: inline-block;
 }
 #btnOK {
   border:1px solid #000;
   background:#ff9999;
   margin:5px;
 }
-
 #btnOK:hover {
   border:1px solid #000;
   background:#ffacac;

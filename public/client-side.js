@@ -47,20 +47,28 @@ function displayNewBubble(data) {
                 <a href="#" data-id="${data.id}" class="editBubble">Edit bubble</a>
                 <!-- Dialog Box-->
                 <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
-                    <form>
+                    <form class="editForm">
                         <label id="editModal">Edit Bubble
                         </label>
                         <br>
+                        <div class="splitModal">
                         <label for="title">Title:</label>
-                        <input type="text" id="${data.id}" name="title" class="title">
+                        <input type="text" id="${data.id}" name="title" class="title" value="${data.title}">
+                        </div>
+                        <div class="splitModal">
                         <label for="category">Category:</label>
-                        <input type="text" id="${data.id}" name="category" class="category">
+                        <input type="text" id="${data.id}" name="category" class="category" value="${data.category}">
+                        </div>
                         <label for="content">Content:</label>
-                        <input type="text" id="${data.id}" name="content" class="content">
+                        <textarea type="text" rows="4" cols="42" id="${data.id}" name="content" class="content">${data.content}</textarea>
                         <label for="contentType">Content Type:</label>
-                        <input type="text" id="${data.id}" name="contentType" class="contentType">
+                        <select type="text" id="${data.id}" name="contentType" class="contentType" value="${data.contentType}">
+                            <option>Text/markdown</option>
+                            <option>Image</option>
+                            <option>Url</option>
+                        </select>
                         <div align="center">
-                            <input type="button" value="Edit" class="btnOK" data-id="${data.id}">
+                            <input type="submit" value="Edit" class="btnOK" data-id="${data.id}">
                             <input type="button" value="Cancel" class="btnCANCEL">
                         </div>
                     </form>
@@ -111,20 +119,28 @@ function displayBubbles(data) {
                 <a href="#" data-id="${data[index].id}" class="editBubble">Edit bubble</a>
                 <!-- Dialog Box-->
                 <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
-                    <form>
+                    <form class="editForm">
                         <label id="editModal">Edit Bubble
                         </label>
                         <br>
+                        <div class="splitModal">
                         <label for="title">Title:</label>
-                        <input type="text" id="${data[index].id}" name="title" class="title">
+                        <input type="text" id="${data[index].id}" name="title" class="title" value="${data[index].title}">
+                        </div>
+                        <div class="splitModal">
                         <label for="category">Category:</label>
-                        <input type="text" id="${data[index].id}" name="category" class="category">
+                        <input type="text" id="${data[index].id}" name="category" class="category" value="${data[index].category}">
+                        </div>
                         <label for="content">Content:</label>
-                        <input type="text" id="${data[index].id}" name="content" class="content">
+                        <textarea type="text" rows="4" cols="42" id="${data[index].id}" name="content" class="content">${data[index].content}</textarea>
                         <label for="contentType">Content Type:</label>
-                        <input type="text" id="${data[index].id}" name="contentType" class="contentType">
+                        <select type="text" id="${data[index].id}" name="contentType" class="contentType" value="${data[index].contentType}">
+                            <option>Text/markdown</option>
+                            <option>Image</option>
+                            <option>Url</option>
+                        </select>
                         <div align="center">
-                            <input type="button" value="Edit" class="btnOK" data-id="${data[index].id}">
+                            <input type="submit" value="Edit" class="btnOK" data-id="${data[index].id}">
                             <input type="button" value="Cancel" class="btnCANCEL">
                         </div>
                     </form>
@@ -140,7 +156,8 @@ getBubbles()
 
 //Edit Modal
 $(document).on('click', '.editBubble', function() {
-    $("#myform input[type=text]").val('');
+    // below clears the input value in edit modal
+    // $("#myform input[type=text]").val('');
     $(this).next("div").show(500);
     $(".btnCANCEL").click(function(){
         $(this).closest(".dialog").hide(400);
@@ -178,6 +195,7 @@ $(document).on('click', '.deleteBubble', function(){
 $(document).on('click', '.createBubble', function() {
     event.preventDefault();
     $('#createform input[type=text]').val('');
+    $('#createform textarea').val('');
     $(this).next("#createform").show(500);
     $('.btnCANCEL').click(function(){
         $(this).closest(".createform").hide(400);
@@ -185,8 +203,8 @@ $(document).on('click', '.createBubble', function() {
 });
 
 //createBubble 
-//.on('submit') dont work!
-$(document).on('click', '.btnCREATE', function() {
+$(document).on('submit', '.createForm', function() {
+    event.preventDefault();
     const create = {
         "title": $(`#title`).val(),
         "category": $(`#category`).val(),
@@ -194,7 +212,6 @@ $(document).on('click', '.btnCREATE', function() {
         "contentType": $(`#contentType`).val()
     };
     state.currentBubble = create;
-    console.log(state.currentBubble);
     createBubble(state.currentBubble);
     $(this).closest('.createform').hide(400);
 })
