@@ -52,16 +52,16 @@ function displayNewBubble(data) {
                         <label id="editModal">Edit Bubble
                         </label>
                         <br>
-                        <div class="splitModal">
+                        <div class="splitModal col-xs-6 leftModal">
                         <label for="title">Title:</label>
-                        <input type="text" id="${data.id}" name="title" class="title" value="${data.title}">
+                        <input type="text" id="${data.id}" name="title" class="title col-xs-12" value="${data.title}">
                         </div>
-                        <div class="splitModal">
+                        <div class="splitModal col-xs-6 rightModal">
                         <label for="category">Category:</label>
-                        <input type="text" id="${data.id}" name="category" class="category" value="${data.category}">
+                        <input type="text" id="${data.id}" name="category" class="category col-xs-12" value="${data.category}">
                         </div>
                         <label for="content">Content:</label>
-                        <textarea type="text" rows="4" cols="42" id="${data.id}" name="content" class="content">${data.content}</textarea>
+                        <textarea type="text" rows="4" id="${data.id}" name="content" class="content col-xs-12">${data.content}</textarea>
                         <label for="contentType">Content Type:</label>
                         <select type="text" id="${data.id}" name="contentType" class="contentType" value="${data.contentType}">
                             <option>Text/markdown</option>
@@ -124,16 +124,16 @@ function displayBubbles(data) {
                         <label id="editModal">Edit Bubble
                         </label>
                         <br>
-                        <div class="splitModal">
+                        <div class="splitModal col-xs-6 leftModal">
                         <label for="title">Title:</label>
-                        <input type="text" id="${data[index].id}" name="title" class="title" value="${data[index].title}">
+                        <input type="text" id="${data[index].id}" name="title" class="title col-xs-12" value="${data[index].title}">
                         </div>
-                        <div class="splitModal">
+                        <div class="splitModal col-xs-6 rightModal">
                         <label for="category">Category:</label>
-                        <input type="text" id="${data[index].id}" name="category" class="category" value="${data[index].category}">
+                        <input type="text" id="${data[index].id}" name="category" class="category col-xs-12" value="${data[index].category}">
                         </div>
                         <label for="content">Content:</label>
-                        <textarea type="text" rows="4" cols="42" id="${data[index].id}" name="content" class="content">${data[index].content}</textarea>
+                        <textarea type="text" rows="4" cols="42" id="${data[index].id}" name="content" class="content col-xs-12">${data[index].content}</textarea>
                         <label for="contentType">Content Type:</label>
                         <select type="text" id="${data[index].id}" name="contentType" class="contentType" value="${data[index].contentType}">
                             <option>Text/markdown</option>

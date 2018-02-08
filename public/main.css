@@ -72,7 +72,8 @@ body {
   position:absolute;
   z-index: 9999;
   display:none;
-  width: 31%;
+  width: 40%;
+  margin: 1rem;
 }
 .createform label {
   display: block;
@@ -85,7 +86,7 @@ body {
   position:absolute;
   z-index: 9999;
   display:none;
-  width: 33%;
+  width: 40%;
 }
 .dialog label {
   display:block;
@@ -97,11 +98,19 @@ select {
 input[type=text] {
   border:1px solid #333;
   display:block;
-  margin:5px 5px 5px 0px;
+  margin:0;
+  width: 100%;
 }
 .splitModal {
-  width: 49%;
   display: inline-block;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.rightModal {
+  padding-left: 10px;
+}
+textarea.col-xs-12 {
+  padding-left: 5px;
 }
 #btnOK {
   border:1px solid #000;
