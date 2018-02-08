@@ -1,5 +1,5 @@
 'use strict'
-
+const marked = require('marked');
 const { BubbleUpPost } = require('./models'); 
 
 module.exports = function(app) {
@@ -21,7 +21,8 @@ module.exports = function(app) {
     			if(!(req.get('Content-Type') === 'application/json')) {
     				res.render('pages/bubbles');
     			} else {
-    				res.json(posts.map(post => post.serialize()));
+    				res.json(posts.map(post => post.serialize()
+                    ));
     			}
     			
     		})

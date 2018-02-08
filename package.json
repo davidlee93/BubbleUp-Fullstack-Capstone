@@ -4,13 +4,15 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.16.2",
+    "body-parser": "^1.15.2",
+    "date-fns": "^1.29.0",
     "ejs": "^2.4.1",
-    "nodemon": "^1.14.11",
-    "uuid": "^2.0.3",
+    "express": "^4.16.2",
+    "marked": "^0.3.12",
     "mongoose": "^4.7.1",
     "morgan": "^1.7.0",
-    "body-parser": "^1.15.2"
+    "nodemon": "^1.14.11",
+    "uuid": "^2.0.3"
   },
   "devDependencies": {
     "mocha": "^4.1.0",

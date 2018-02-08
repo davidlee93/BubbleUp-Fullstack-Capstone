@@ -1,3 +1,4 @@
+
 // state object
 state = {
     currentBubble: {
@@ -36,15 +37,15 @@ function createBubble(newBubble) {
 function displayNewBubble(data) {
     console.log(data);
     console.log(data.id);
-   $('.bubbles').append(
-        `<div class="post col-md-4">
+   $('.bubbles').prepend(
+        `<div class="bubble col-sm-12">
             <h3>${data.title}</h3>
             <h3># ${data.category}</h3>
-            <p>${data.content}</p>
-            <h5>${data.created}</h5>
-            <a href="#" class="deleteBubble" data-id="${data.id}">Delete bubble</a>
+            <p>${marked(data.content)}</p>
+            <h5>${dateFns.format(data.created, 'MM/DD/YYYY')}</h5>
+            <a href="#" class="deleteBubble" data-id="${data.id}"><img src="public/Delete_icon.png"/></a>
             <div id="panel">
-                <a href="#" data-id="${data.id}" class="editBubble">Edit bubble</a>
+                <a href="#" data-id="${data.id}" class="editBubble"><img src="public/Edit_icon.png"/></a>
                 <!-- Dialog Box-->
                 <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
                     <form class="editForm">
@@ -108,15 +109,15 @@ function deleteBubble(bubbleId) {
 // display data from API
 function displayBubbles(data) {
     for (index in data) {
-       $('.bubbles').append(
-        `<div class="post col-md-4">
+       $('.bubbles').prepend(
+        `<div class="bubble col-xs-12">
             <h3>${data[index].title}</h3>
             <h3># ${data[index].category}</h3>
-            <p>${data[index].content}</p>
-            <h5>${data[index].created}</h5>
-            <a href="#" class="deleteBubble" data-id="${data[index].id}">Delete bubble</a>
+            <p>${marked(data[index].content)}</p>
+            <h5>Created: ${dateFns.format(data[index].created, 'MM/DD/YYYY')}</h5>
+            <a href="#" class="deleteBubble" data-id="${data[index].id}"><img src="public/Delete_icon.png"/></a>
             <div id="panel">
-                <a href="#" data-id="${data[index].id}" class="editBubble">Edit bubble</a>
+                <a href="#" data-id="${data[index].id}" class="editBubble"><img src="public/Edit_icon.png"/></a>
                 <!-- Dialog Box-->
                 <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
                     <form class="editForm">

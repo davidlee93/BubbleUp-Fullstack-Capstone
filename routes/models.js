@@ -1,4 +1,5 @@
 'use strict'
+var format = require('date-fns/format')
 
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
@@ -8,7 +9,10 @@ const bubbleUpPostSchema = mongoose.Schema({
 	category: {type: String, required: true},
 	contentType: {type: String},
 	content: {type: String, required: true},
-	created: {type: Date, default: Date.now}
+	created: {type: Date, default: format(
+									  new Date(),
+									  'MM/DD/YYYY')},
+	// html: {type: String}
 });
 
 //** Below needed if doing name **
@@ -23,7 +27,8 @@ bubbleUpPostSchema.methods.serialize = function() {
 		category: this.category,
 		contentType: this.contentType,
 		content: this.content,
-		created: this.created
+		created: this.created,
+		// html: this.html
 	};
 };
 
