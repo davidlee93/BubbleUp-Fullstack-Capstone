@@ -15,13 +15,13 @@ module.exports = function(app) {
     	BubbleUpPost
     		.find()
     		.limit(15)
-    		.then(posts => {
+    		.then(bubbles => {
     			console.log('fetching posts')
-    			console.log(posts)
+    			console.log(bubbles)
     			if(!(req.get('Content-Type') === 'application/json')) {
     				res.render('pages/bubbles');
     			} else {
-    				res.json(posts.map(post => post.serialize()
+    				res.json(bubbles.map(bubble => bubble.serialize()
                     ));
     			}
     			
@@ -34,7 +34,7 @@ module.exports = function(app) {
     app.get('/bubbles/:id', (req, res) => {
     	BubbleUpPost
     		.findById(req.params.id)
-    		.then(post => res.json(post.serialize()))
+    		.then(bubble => res.json(bubble.serialize()))
     		.catch(err => {
     			console.error(err);
     			res.status(500).json({ message: 'Internal server error' });
@@ -95,7 +95,7 @@ module.exports = function(app) {
         console.log(req.params.id)
     	BubbleUpPost
     		.findByIdAndUpdate(req.params.id, { $set: updated }, { new: true })
-    		.then(updatedPost => res.json(updatedPost.serialize()))
+    		.then(updatedBubble => res.json(updatedBubble.serialize()))
     		.catch(err => res.status(500).json({ message: 'Internal server error' }));
     });
 };

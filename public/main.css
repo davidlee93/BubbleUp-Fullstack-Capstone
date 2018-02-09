@@ -2,9 +2,18 @@ html {
     position: relative;
     min-height: 100%;
 }
+* {
+  box-sizing: border-box;
+}
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
+    background-image: url("home_bg2.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover; 
+}
+.nav>li {
+  display: inline-block;
 }
 #bubbles {
     padding-top: 48px;
@@ -32,38 +41,27 @@ body {
   right:35px;
   top:10px;
 }
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    /* Set the fixed height of the footer here */
-    height: 60px;
-    background-color: #507cd8;
-}
-.footer p {
-    line-height: 60px;
-    color: white;
-}
-.footer a {
-    color: #efb22e;
-    text-decoration: none;
-}
 .bubble {
     border: 1px black solid;
     border-radius: 10px;
-    margin: 1rem;
+    margin: 1rem 0 1rem 0;
 }
 
-.bubble h5{
-  position: absolute;
-  right: 10px;
-  bottom: 0px;
+.bubble h5 {
+  float: right;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: grey;
     opacity: .5; /* Firefox */
 }
+
+.createform, .dialog {
+        position: absolute;
+        top: 200px;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+    }
 
 .createform {
   border:5px solid #666;
@@ -73,7 +71,7 @@ body {
   z-index: 9999;
   display:none;
   width: 40%;
-  margin: 1rem;
+  margin-top: 1rem;
 }
 .createform label {
   display: block;
@@ -92,6 +90,14 @@ body {
   display:block;
   color:#cecece;
 }
+#createModal {
+  text-align: center;
+  font-size: 18px;
+}
+#editModal {
+  text-align: center;
+  font-size: 18px;
+}
 select {
   margin-bottom: 10px;
 }
@@ -99,6 +105,7 @@ input[type=text] {
   border:1px solid #333;
   display:block;
   margin:0;
+  padding-left: 5px;
   width: 100%;
 }
 .splitModal {
@@ -120,4 +127,10 @@ textarea.col-xs-12 {
 #btnOK:hover {
   border:1px solid #000;
   background:#ffacac;
+}
+
+@media (max-width: 576px) {
+  .createform, .dialog {
+    width: 80%;
+  }
 }

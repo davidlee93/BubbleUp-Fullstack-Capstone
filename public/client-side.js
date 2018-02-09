@@ -40,7 +40,7 @@ function displayNewBubble(data) {
    $('.bubbles').prepend(
         `<div class="bubble col-sm-12">
             <h3>${data.title}</h3>
-            <h3># ${data.category}</h3>
+            <h4># ${data.category}</h4>
             <p>${marked(data.content)}</p>
             <h5>${dateFns.format(data.created, 'MM/DD/YYYY')}</h5>
             <a href="#" class="deleteBubble" data-id="${data.id}"><img src="public/Delete_icon.png"/></a>
@@ -112,7 +112,7 @@ function displayBubbles(data) {
        $('.bubbles').prepend(
         `<div class="bubble col-xs-12">
             <h3>${data[index].title}</h3>
-            <h3># ${data[index].category}</h3>
+            <h4># ${data[index].category}</h4>
             <p>${marked(data[index].content)}</p>
             <h5>Created: ${dateFns.format(data[index].created, 'MM/DD/YYYY')}</h5>
             <a href="#" class="deleteBubble" data-id="${data[index].id}"><img src="public/Delete_icon.png"/></a>
@@ -152,6 +152,11 @@ function displayBubbles(data) {
     }
 }
 
+function closeAll() {
+    $('.dialog').hide(400);
+    $('#createform').hide(400);
+}
+
 // Event handlers to call API functions
 getBubbles()
 
@@ -159,6 +164,7 @@ getBubbles()
 $(document).on('click', '.editBubble', function() {
     // below clears the input value in edit modal
     // $("#myform input[type=text]").val('');
+    closeAll();
     $(this).next("div").show(500);
     $(".btnCANCEL").click(function(){
         $(this).closest(".dialog").hide(400);
@@ -195,6 +201,7 @@ $(document).on('click', '.deleteBubble', function(){
 //create MODAL
 $(document).on('click', '.createBubble', function() {
     event.preventDefault();
+    closeAll();
     $('#createform input[type=text]').val('');
     $('#createform textarea').val('');
     $(this).next("#createform").show(500);

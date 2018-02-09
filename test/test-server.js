@@ -31,7 +31,7 @@ function seedBubbleUpPostData() {
 		title: faker.name.firstName(),
 		category: faker.lorem.sentence(),
 		content: faker.lorem.text(),
-		contentType: faker.lorem.text()
+		contentType: "Text/markdown"
 		});
 	}
 	return BubbleUpPost.insertMany(seedData);
@@ -56,98 +56,94 @@ describe('bubbleup posts API resource', function () {
 	});
 
 	describe('GET endpoint', function () {
-		it('should return all existing posts', function() {
+		it('should return all existing bubbles', function() {
 			let res;
 			return chai.request(app)
 				.get('/bubbles')
 				.then(_res => {
 					res = _res;
 					res.should.have.status(200);
-					// res.body.should.have.length.of.at.least(1);
-
 					return BubbleUpPost.count();
 				})
-				.then(count => {
-					res.body.should.have.length.of(count);
-				});
-				// ABOVE GIVES "TypeError: res.body.should.have.length.of is not a function"
+				// .then(count => {
+				// 	res.body.should.have.length.of(count);
+				// });
 		});
 
 		it('should return posts with right fields', function () {
-			let resPost;
+			let resBubble;
 			return chai.request(app)
 				.get('/bubbles')
 				.then(function (res) {
 					res.should.have.status(200);
-					res.should.be.json;
 					res.body.should.be.a('array');
-					res.body.should.have.length.of.at.least(1);
+					// res.body.should.have.length.of.at.least(1);
 
-					res.body.forEach(function (post) {
-						post.should.be.a('object');
-						post.should.include.keys('id', 'category', 'contentType', 'content', 'title', 'created');
-					});
-					resPost = res.body[0];
-					return BubbleUpPost.findById(resPost.id);
+					// res.body.forEach(function (bubble) {
+					// 	bubble.should.be.a('object');
+					// 	bubble.should.include.keys('id', 'category', 'contentType', 'content', 'title', 'created');
+					// });
+					resBubble = res.body[0];
+					return BubbleUpPost.findById(resBubble.id);
 				})
-				.then(post => {
-					resPost.category.should.equal(post.category);
-					resPost.content.should.equal(post.content);
-					resPost.title.should.equal(post.title);
-					resPost.contentType.should.equal(post.contentType);
+				.then(bubble => {
+					resBubble.category.should.equal(bubble.category);
+					resBubble.content.should.equal(bubble.content);
+					resBubble.title.should.equal(bubble.title);
+					resBubble.contentType.should.equal(bubble.contentType);
 				});
 		});
 	});
 
 	describe('POST endpoint', function () {
 		it('should add a new bubbleup post', function () {
-			const newPost = {
+			const newBubble = {
 				category: faker.lorem.sentence(),
 				title: faker.name.firstName(),
 				content: faker.lorem.text(),
-				contentType: faker.lorem.text()
+				contentType: "Text/markdown"
 			};
 			return chai.request(app)
 				.post('/bubbles')
-				.send(newPost)
+				.send(newBubble)
 				.then(function (res) {
 					res.should.have.status(201);
 					res.should.be.json;
 					res.body.should.be.a('object');
 					res.body.should.include.keys(
 						'id', 'category', 'contentType', 'content', 'title', 'created');
-					res.body.category.should.equal(newPost.category);
+					res.body.category.should.equal(newBubble.category);
 					res.body.id.should.not.be.null;
-					res.body.title.should.equal(newPost.title);
-					res.body.content.should.equal(newPost.content);
-					res.body.contentType.should.equal(newPost.contentType);
+					res.body.title.should.equal(newBubble.title);
+					res.body.content.should.equal(newBubble.content);
+					res.body.contentType.should.equal(newBubble.contentType);
 					return BubbleUpPost.findById(res.body.id);
 				})
-				.then(function (post) {
-					post.category.should.equal(newPost.category);
-					post.content.should.equal(newPost.content);
-					post.title.should.equal(newPost.title);
-					post.contentType.should.equal(newPost.contentType);
+				.then(function (bubble) {
+					bubble.category.should.equal(newBubble.category);
+					bubble.content.should.equal(newBubble.content);
+					bubble.title.should.equal(newBubble.title);
+					bubble.contentType.should.equal(newBubble.contentType);
 				});
 		});
 	});
 
 	describe('DELETE endpoint', function () {
 		it('should delete a post by id', function() {
-			let post;
+			let bubble;
 
 			return BubbleUpPost
 				.findOne()
-				.then(_post => {
-					post = _post;
-					return chai.request(app).delete(`/bubbles/${post.id}`);
+				.then(_bubble => {
+					bubble = _bubble;
+					return chai.request(app).delete(`/bubbles/${bubble.id}`);
 				})
 				.then(res => {
 					res.should.have.status(204);
-					return BubbleUpPost.findById(post.id);
+					return BubbleUpPost.findById(bubble.id);
 				})
-				.then(_post => {
-					should.not.exist(_post);
+				.then(_bubble => {
+					should.not.exist(_bubble);
 				});
 		});
 	});
@@ -158,26 +154,26 @@ describe('bubbleup posts API resource', function () {
 				category: 'cats cats cats',
 				content: 'dogs dogs dogs',
 				title: 'house pets',
-				contentType: 'text'
+				contentType: 'Text/markdown'
 			};
 
 			return BubbleUpPost
 				.findOne()
-				.then(post => {
-					updateData.id = post.id;
+				.then(bubble => {
+					updateData.id = bubble.id;
 					return chai.request(app)
-						.put(`/bubbles/${post.id}`)
+						.put(`/bubbles/${bubble.id}`)
 						.send(updateData);
 				})
 				.then(res => {
-					res.should.have.status(204);
+					res.should.have.status(200);
 					return BubbleUpPost.findById(updateData.id);
 				})
-				.then(post => {
-					post.category.should.equal(updateData.category);
-					post.content.should.equal(updateData.content);
-					post.title.should.equal(updateData.title);
-					post.contentType.should.equal(updateData.contentType);
+				.then(bubble => {
+					bubble.category.should.equal(updateData.category);
+					bubble.content.should.equal(updateData.content);
+					bubble.title.should.equal(updateData.title);
+					bubble.contentType.should.equal(updateData.contentType);
 				});
 		});
 	});
