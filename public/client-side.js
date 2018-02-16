@@ -37,46 +37,106 @@ function createBubble(newBubble) {
 function displayNewBubble(data) {
     console.log(data);
     console.log(data.id);
-   $('.bubbles').prepend(
-        `<div class="bubble col-sm-12">
-            <h3>${data.title}</h3>
-            <h4># ${data.category}</h4>
-            <p>${marked(data.content)}</p>
-            <h5>${dateFns.format(data.created, 'MM/DD/YYYY')}</h5>
-            <a href="#" class="deleteBubble" data-id="${data.id}"><img src="public/Delete_icon.png"/></a>
-            <div id="panel">
-                <a href="#" data-id="${data.id}" class="editBubble"><img src="public/Edit_icon.png"/></a>
-                <!-- Dialog Box-->
-                <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
-                    <form class="editForm">
-                        <label id="editModal">Edit Bubble
-                        </label>
-                        <br>
-                        <div class="splitModal col-xs-6 leftModal">
-                        <label for="title">Title:</label>
-                        <input type="text" id="${data.id}" name="title" class="title col-xs-12" value="${data.title}">
-                        </div>
-                        <div class="splitModal col-xs-6 rightModal">
-                        <label for="category">Category:</label>
-                        <input type="text" id="${data.id}" name="category" class="category col-xs-12" value="${data.category}">
-                        </div>
-                        <label for="content">Content:</label>
-                        <textarea type="text" rows="4" id="${data.id}" name="content" class="content col-xs-12">${data.content}</textarea>
-                        <label for="contentType">Content Type:</label>
-                        <select type="text" id="${data.id}" name="contentType" class="contentType" value="${data.contentType}">
-                            <option>Text/markdown</option>
-                            <option>Image</option>
-                            <option>Url</option>
-                        </select>
-                        <div align="center">
-                            <input type="submit" value="Edit" class="btnOK" data-id="${data.id}">
-                            <input type="button" value="Cancel" class="btnCANCEL">
-                        </div>
-                    </form>
-                </div>
+   if (data.content.includes('https://www.youtube.com')) {
+        let videoID = data.content.split("v=")[1];
+        let videoUrl = `[![${data.content}](http://img.youtube.com/vi/${videoID}/0.jpg)](http://www.youtube.com/watch?v=${videoID})`
+        $('.bubbles').prepend(
+        `<div class="bubble col-xs-12">
+            <div class="editButton">
+                <a href="#" data-id="${data.id}" class="editBubble">
+                Edit Bubble
+                <i class="far fa-edit"></i>
+                </a>
             </div>
+            <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
+                <form class="editForm">
+                    <label id="editModal">Edit Bubble
+                    </label>
+                    <br>
+                    <a href="#" class="deleteBubble" data-id="${data.id}">
+                    Delete
+                    <i class="fas fa-trash-alt"></i>
+                    </a>
+                    <div class="splitModal col-xs-6 leftModal">
+                    <label for="title">Title:</label>
+                    <input type="text" id="${data.id}" name="title" class="title col-xs-12" value="${data.title}">
+                    </div>
+                    <div class="splitModal col-xs-6 rightModal">
+                    <label for="category">Category:</label>
+                    <input type="text" id="${data.id}" name="category" class="category col-xs-12" value="${data.category}">
+                    </div>
+                    <label for="content">Content:</label>
+                    <textarea type="text" rows="4" cols="42" id="${data.id}" name="content" class="content col-xs-12">${data.content}</textarea>
+                    <label for="contentType">Content Type:</label>
+                    <select type="text" id="${data.id}" name="contentType" class="contentType" value="${data.contentType}">
+                        <option>Text/markdown</option>
+                        <option>Image</option>
+                        <option>Url</option>
+                    </select>
+                    <div align="center">
+                        <input type="submit" value="Edit" class="btnOK" data-id="${data.id}">
+                        <input type="button" value="Cancel" class="btnCANCEL">
+                    </div>
+                </form>
+            </div>
+            <div>
+                <h3>${data.title}</h3>
+                <h4># ${data.category}</h4>
+                <p>${marked(videoUrl)}</p>
+                <h5>Created: ${dateFns.format(data.created, 'MM/DD/YYYY')}</h5>
+            </div>
+
         </div>`
-    );
+    )
+    } else {
+        $('.bubbles').prepend(
+        `<div class="bubble col-xs-12">
+            <div class="editButton">
+                <a href="#" data-id="${data.id}" class="editBubble">
+                Edit Bubble
+                <i class="far fa-edit"></i>
+                </a>
+            </div>
+            <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
+                <form class="editForm">
+                    <label id="editModal">Edit Bubble
+                    </label>
+                    <br>
+                    <a href="#" class="deleteBubble" data-id="${data.id}">
+                    Delete
+                    <i class="fas fa-trash-alt"></i>
+                    </a>
+                    <div class="splitModal col-xs-6 leftModal">
+                    <label for="title">Title:</label>
+                    <input type="text" id="${data.id}" name="title" class="title col-xs-12" value="${data.title}">
+                    </div>
+                    <div class="splitModal col-xs-6 rightModal">
+                    <label for="category">Category:</label>
+                    <input type="text" id="${data.id}" name="category" class="category col-xs-12" value="${data.category}">
+                    </div>
+                    <label for="content">Content:</label>
+                    <textarea type="text" rows="4" cols="42" id="${data.id}" name="content" class="content col-xs-12">${data.content}</textarea>
+                    <label for="contentType">Content Type:</label>
+                    <select type="text" id="${data.id}" name="contentType" class="contentType" value="${data.contentType}">
+                        <option>Text/markdown</option>
+                        <option>Image</option>
+                        <option>Url</option>
+                    </select>
+                    <div align="center">
+                        <input type="submit" value="Edit" class="btnOK" data-id="${data.id}">
+                        <input type="button" value="Cancel" class="btnCANCEL">
+                    </div>
+                </form>
+            </div>
+            <div>
+                <h3>${data.title}</h3>
+                <h4># ${data.category}</h4>
+                <p>${marked(data.content)}</p>
+                <h5>Created: ${dateFns.format(data.created, 'MM/DD/YYYY')}</h5>
+            </div>
+
+        </div>`)
+    }
 }
 
 function updateBubble(id, updates) {
@@ -109,21 +169,26 @@ function deleteBubble(bubbleId) {
 // display data from API
 function displayBubbles(data) {
     for (index in data) {
-       $('.bubbles').prepend(
-        `<div class="bubble col-xs-12">
-            <h3>${data[index].title}</h3>
-            <h4># ${data[index].category}</h4>
-            <p>${marked(data[index].content)}</p>
-            <h5>Created: ${dateFns.format(data[index].created, 'MM/DD/YYYY')}</h5>
-            <a href="#" class="deleteBubble" data-id="${data[index].id}"><img src="public/Delete_icon.png"/></a>
-            <div id="panel">
-                <a href="#" data-id="${data[index].id}" class="editBubble"><img src="public/Edit_icon.png"/></a>
-                <!-- Dialog Box-->
+        if (data[index].content.includes('https://www.youtube.com')) {
+            let videoID = data[index].content.split("v=")[1];
+            let videoUrl = `[![${data[index].content}](http://img.youtube.com/vi/${videoID}/0.jpg)](http://www.youtube.com/watch?v=${videoID})`
+            $('.bubbles').prepend(
+            `<div class="bubble col-xs-12">
+                <div class="editButton">
+                    <a href="#" data-id="${data[index].id}" class="editBubble">
+                    Edit Bubble
+                    <i class="far fa-edit"></i>
+                    </a>
+                </div>
                 <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
                     <form class="editForm">
                         <label id="editModal">Edit Bubble
                         </label>
                         <br>
+                        <a href="#" class="deleteBubble" data-id="${data[index].id}">
+                        Delete
+                        <i class="fas fa-trash-alt"></i>
+                        </a>
                         <div class="splitModal col-xs-6 leftModal">
                         <label for="title">Title:</label>
                         <input type="text" id="${data[index].id}" name="title" class="title col-xs-12" value="${data[index].title}">
@@ -146,15 +211,70 @@ function displayBubbles(data) {
                         </div>
                     </form>
                 </div>
-            </div>
-        </div>`
-        );
+                <div>
+                    <h3>${data[index].title}</h3>
+                    <h4># ${data[index].category}</h4>
+                    <p>${marked(videoUrl)}</p>
+                    <h5>Created: ${dateFns.format(data[index].created, 'MM/DD/YYYY')}</h5>
+                </div>
+
+            </div>`
+        )
+        } else {
+            $('.bubbles').prepend(
+            `<div class="bubble col-xs-12">
+                <div class="editButton">
+                    <a href="#" data-id="${data[index].id}" class="editBubble">
+                    Edit Bubble
+                    <i class="far fa-edit"></i>
+                    </a>
+                </div>
+                <div class="dialog" id="myform" tabindex="-1" data-backdrop="false">
+                    <form class="editForm">
+                        <label id="editModal">Edit Bubble
+                        </label>
+                        <br>
+                        <a href="#" class="deleteBubble" data-id="${data[index].id}">
+                        Delete
+                        <i class="fas fa-trash-alt"></i>
+                        </a>
+                        <div class="splitModal col-xs-6 leftModal">
+                        <label for="title">Title:</label>
+                        <input type="text" id="${data[index].id}" name="title" class="title col-xs-12" value="${data[index].title}">
+                        </div>
+                        <div class="splitModal col-xs-6 rightModal">
+                        <label for="category">Category:</label>
+                        <input type="text" id="${data[index].id}" name="category" class="category col-xs-12" value="${data[index].category}">
+                        </div>
+                        <label for="content">Content:</label>
+                        <textarea type="text" rows="4" cols="42" id="${data[index].id}" name="content" class="content col-xs-12">${data[index].content}</textarea>
+                        <label for="contentType">Content Type:</label>
+                        <select type="text" id="${data[index].id}" name="contentType" class="contentType" value="${data[index].contentType}">
+                            <option>Text/markdown</option>
+                            <option>Image</option>
+                            <option>Url</option>
+                        </select>
+                        <div align="center">
+                            <input type="submit" value="Edit" class="btnOK" data-id="${data[index].id}">
+                            <input type="button" value="Cancel" class="btnCANCEL">
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <h3>${data[index].title}</h3>
+                    <h4># ${data[index].category}</h4>
+                    <p>${marked(data[index].content)}</p>
+                    <h5>Created: ${dateFns.format(data[index].created, 'MM/DD/YYYY')}</h5>
+                </div>
+
+            </div>`)
+        }
     }
 }
 
 function closeAll() {
-    $('.dialog').hide(400);
-    $('#createform').hide(400);
+    $('.dialog').hide();
+    $('#createform').hide();
 }
 
 // Event handlers to call API functions
@@ -162,10 +282,14 @@ getBubbles()
 
 //Edit Modal
 $(document).on('click', '.editBubble', function() {
+    event.preventDefault()
     // below clears the input value in edit modal
     // $("#myform input[type=text]").val('');
     closeAll();
-    $(this).next("div").show(500);
+    $(this).closest('div').siblings('.dialog').show(400);
+    //$(this).next(".dialog").show(500);
+    console.log('click')
+
     $(".btnCANCEL").click(function(){
         $(this).closest(".dialog").hide(400);
     });
@@ -194,7 +318,7 @@ $(document).on('click', '.deleteBubble', function(){
     if (result) {
         const bubbleId = $(this).data('id');
         deleteBubble(bubbleId);
-        $(this).parent().remove();
+        $(this).closest(".bubble").remove();
     }
 });
 
@@ -204,9 +328,9 @@ $(document).on('click', '.createBubble', function() {
     closeAll();
     $('#createform input[type=text]').val('');
     $('#createform textarea').val('');
-    $(this).next("#createform").show(500);
+    $(this).next("#createform").show(400);
     $('.btnCANCEL').click(function(){
-        $(this).closest(".createform").hide(400);
+        $(this).closest(".createform").hide();
     })
 });
 
