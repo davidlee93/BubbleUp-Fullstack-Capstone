@@ -1,50 +1,35 @@
-{
-    "name": {
-        "firstName": "Test",
-        "lastName": "Testerton"
-    },
+[{
+    "title": "testing",
     "category": "Funny",
-    "content": "https://youtuve.com/video",
-    "contentType": "Video",
+    "content": "https://youtube.com/video",
+    "contentType": "Text/markdown",
     "created": "1470012976609"
-}
+},
 {
-    "name": {
-        "firstName": "Test2",
-        "lastName": "Testerton2"
-    },
+    "title": "testing2",
     "category": "Motivational",
-    "content": "https://youtuve.com/video/motivational",
-    "contentType": "Video",
+    "content": "https://youtube.com/video/motivational",
+    "contentType": "Text/markdown",
     "created": "1470012976610"
-}
+},
 {
-    "name": {
-        "firstName": "Test3",
-        "lastName": "Testerton3"
-    },
-    "category": "Thoughtful",
-    "content": "Man does not live by bread alone",
-    "contentType": "quote",
+    "title": "testing3",
+    "category": "test",
+    "content": "tests",
+    "contentType": "Text/markdown",
     "created": "1470012976611"
-}
+},
 {
-    "name": {
-        "firstName": "Test4",
-        "lastName": "Testerton4"
-    },
+    "title": "testing4",
     "category": "Reminder",
     "content": "Got to do ____ on a daily basis",
-    "contentType": "text",
+    "contentType": "Text/markdown",
     "created": "1470012976612"
-}
+},
 {
-    "name": {
-        "firstName": "Test5",
-        "lastName": "Testerton5"
-    },
-    "category": "Scripture",
-    "content": "Rejoice in the Lord always; again I will say, rejoice. Let your reasonableness be known to everyone. The Lord is at hand; do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus - Philippains 4:4-7",
-    "contentType": "quote",
+    "title": "testing5",
+    "category": "test",
+    "content": "testing",
+    "contentType": "Text/markdown",
     "created": "1470012976613"
-}
+}]

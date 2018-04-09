@@ -8,7 +8,7 @@ state = {
         contentType: ''
     },
     bubbles: []
-}
+};
 
 // Call API functions
 function getBubbles() {
@@ -19,7 +19,7 @@ function getBubbles() {
     .then(response => response.json())
     .then(bubbles => displayBubbles(bubbles))
     .catch(error => console.log(error));
-}
+};
 
 function createBubble(newBubble) {
     console.log(newBubble);
@@ -32,7 +32,7 @@ function createBubble(newBubble) {
     .then(response => response.json())
     .then(bubble => displayNewBubble(bubble))
     .catch(error => console.log(error));
-}
+};
 
 function displayNewBubble(data) {
     console.log(data);
@@ -137,7 +137,7 @@ function displayNewBubble(data) {
 
         </div>`)
     }
-}
+};
 
 function updateBubble(id, updates) {
     
@@ -153,7 +153,7 @@ function updateBubble(id, updates) {
     .then(response => response.json())
     .then(json => console.log(json))
     .catch(error => console.log(error)); 
-} 
+};
 
 function deleteBubble(bubbleId) {
     console.log(bubbleId)
@@ -164,7 +164,7 @@ function deleteBubble(bubbleId) {
     .then(response => response.json())
     .then(json => console.log(json))
     .catch(error => console.log(error));
-}
+};
 
 // display data from API
 function displayBubbles(data) {
@@ -275,10 +275,10 @@ function displayBubbles(data) {
 function closeAll() {
     $('.dialog').hide();
     $('#createform').hide();
-}
+};
 
 // Event handlers to call API functions
-getBubbles()
+getBubbles();
 
 //Edit Modal
 $(document).on('click', '.editBubble', function() {
@@ -346,5 +346,5 @@ $(document).on('submit', '.createForm', function() {
     state.currentBubble = create;
     createBubble(state.currentBubble);
     $(this).closest('.createform').hide(400);
-})
+});
 

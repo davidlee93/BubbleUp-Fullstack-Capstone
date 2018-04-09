@@ -17,6 +17,10 @@ body {
 .nav>li {
   display: inline-block;
 }
+.jumbotron {
+  padding-bottom: 15px;
+  background-color: #D9F1FF;
+}
 #bubbles {
     padding-top: 48px;
 }
