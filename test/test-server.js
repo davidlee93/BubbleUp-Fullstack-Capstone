@@ -63,26 +63,28 @@ describe('bubbleup posts API resource', function () {
 				.then(_res => {
 					res = _res;
 					res.should.have.status(200);
+					res.body.should.have.lengthOf.at.least(1);
 					return BubbleUpPost.count();
 				})
-				// .then(count => {
-				// 	res.body.should.have.length.of(count);
-				// });
+				.then(count => {
+				 	res.body.should.have.lengthOf(count);
+				});
 		});
 
-		it('should return posts with right fields', function () {
+		it('should return bubbles with right fields', function () {
 			let resBubble;
 			return chai.request(app)
 				.get('/bubbles')
 				.then(function (res) {
 					res.should.have.status(200);
+					res.should.be.json;
 					res.body.should.be.a('array');
-					// res.body.should.have.length.of.at.least(1);
+					res.body.should.have.lengthOf.at.least(1);
 
-					// res.body.forEach(function (bubble) {
-					// 	bubble.should.be.a('object');
-					// 	bubble.should.include.keys('id', 'category', 'contentType', 'content', 'title', 'created');
-					// });
+					res.body.forEach(function (bubble) {
+						bubble.should.be.a('object');
+						bubble.should.include.keys('id', 'category', 'contentType', 'content', 'title', 'created');
+					});
 					resBubble = res.body[0];
 					return BubbleUpPost.findById(resBubble.id);
 				})
@@ -124,6 +126,16 @@ describe('bubbleup posts API resource', function () {
 					bubble.content.should.equal(newBubble.content);
 					bubble.title.should.equal(newBubble.title);
 					bubble.contentType.should.equal(newBubble.contentType);
+				});
+		});
+
+		it('should error if POST is missing expected values', function() {
+			const badRequestData = {};
+			return chai.request(app)
+				.post('/bubbles')
+				.send(badRequestData)
+				.catch(function(res) {
+					res.should.have.status(400);
 				});
 		});
 	});

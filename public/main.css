@@ -8,25 +8,44 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-image: url("home_bg2.jpeg");
-    background-repeat: repeat-y;
+    /* background-image: url("bubble.jpeg");
     background-size: 100%;
+    background-repeat: no-repeat; */
+    /* background-repeat: repeat-y;
+    background-size: 70%;
     background-color: hsla(0,0%,100%,0.6);
-    background-blend-mode: overlay;
+    background-blend-mode: overlay; */
 }
-.nav>li {
-  display: inline-block;
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+a.navbar-brand {
+  margin-top: 10px;
+  height: 60px;
+  font-size: 40px;
+  color: white;
+}
+.navbar-inverse {
+  background-color: #85E0F7;
+  border-color: #85E0F7;
+  color: white;
+}
+.navbar-inverse .navbar-brand {
+  color: white;
+}
+h2.text-center {
+  margin-top: 30px;
 }
 .jumbotron {
   padding-bottom: 15px;
-  background-color: #D9F1FF;
+  background: none;
 }
 #bubbles {
     padding-top: 48px;
 }
 .createBubble {
   font-size: 30px;
-  float: left;
 }
 .createBubble:hover {
   text-decoration: none;
