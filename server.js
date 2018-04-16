@@ -10,7 +10,6 @@ mongoose.Promise = global.Promise;
 const { DATABASE_URL, PORT } = require('./routes/config');
 const { BubbleUpPost } = require('./routes/models');
 
-
 const app = express();
 
 const routes = require('./routes/index.js');
@@ -65,6 +64,5 @@ function closeServer() {
 if (require.main === module) {
 	runServer().catch(err => console.error(err));
 }
-
 
 module.exports = { runServer, app, closeServer };

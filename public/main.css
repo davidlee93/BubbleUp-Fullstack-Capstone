@@ -108,13 +108,11 @@ h2.text-center {
   text-align: center;
   font-size: 18px;
 }
-
 .deleteBubble {
   position: absolute;
   right: 10px;
   top: 10px;
 }
-
 select {
   margin-bottom: 10px;
 }
@@ -129,7 +127,7 @@ input#filter {
   width: inherit;
   display: inline;
 }
-.filter input[type=submit]{
+.filter input[type=submit] {
   display: none;
 }
 .filterButton {

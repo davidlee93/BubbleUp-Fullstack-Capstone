@@ -19,15 +19,6 @@ module.exports = function(app) {
     		});
 	});
 	
-    // app.get('/bubbles/:id', (req, res) => {
-    // 	BubbleUpPost
-    // 		.findById(req.params.id)
-    // 		.then(bubble => res.json(bubble.serialize()))
-    // 		.catch(err => {
-    // 			res.status(500).json({ message: 'Internal server error' });
-    // 		});
-	// });
-	
 	app.get('/bubbles/:category', (req, res) => {
     	BubbleUpPost
 			.find()
@@ -49,7 +40,6 @@ module.exports = function(app) {
     			return res.status(400).send(message);
     		}
     	}
-
     	BubbleUpPost
     		.create({
                 title: req.body.title,

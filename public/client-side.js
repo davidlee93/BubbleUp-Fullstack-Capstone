@@ -1,5 +1,4 @@
 
-// state object
 state = {
     currentBubble: {
         title: '',
@@ -161,8 +160,6 @@ function displayNewBubble(data) {
 function updateBubble(id, updates) {
     
     updates.id = id
-    console.log(id)
-    console.log(updates)
     const options = {
         method: "PUT",
         headers: {'Content-Type': 'application/json'},
@@ -175,7 +172,6 @@ function updateBubble(id, updates) {
 };
 
 function deleteBubble(bubbleId) {
-    console.log(bubbleId)
     fetch(`/bubbles/${bubbleId}`, {
         method: "DELETE",
         headers: { 'Content-Type': 'application/json'}
@@ -303,11 +299,8 @@ getBubbles();
 //Edit Modal
 $(document).on('click', '.editBubble', function() {
     event.preventDefault()
-    // below clears the input value in edit modal
-    // $("#myform input[type=text]").val('');
     closeAll();
     $(this).closest('div').siblings('.dialog').show(400);
-    //$(this).next(".dialog").show(500);
     $(".btnCANCEL").click(function(){
         $(this).closest(".dialog").hide(400);
     });
@@ -340,7 +333,7 @@ $(document).on('click', '.deleteBubble', function(){
     }
 });
 
-//create MODAL
+//show create MODAL
 $(document).on('click', '.createBubble', function() {
     event.preventDefault();
     closeAll();
@@ -372,7 +365,3 @@ $(document).on('click', '.filterButton', function() {
     filter = $(`#filter`).val().toLowerCase().trim();
     filterBubble(filter);
 });
-
-//// Get by value
-
-// db.restaurants.find({borough: "Queens"});

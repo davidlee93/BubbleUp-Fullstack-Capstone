@@ -11,14 +11,8 @@ const bubbleUpPostSchema = mongoose.Schema({
 	content: {type: String, required: true},
 	created: {type: Date, default: format(
 									  new Date(),
-									  'MM/DD/YYYY')},
-	// html: {type: String}
+									  'MM/DD/YYYY')}
 });
-
-//** Below needed if doing name **
-// bubbleUpPostSchema.virtual('authorName').get(function() {
-// 	return `${this.name.firstName} ${this.name.lastName}`.trim();
-// });
 
 bubbleUpPostSchema.methods.serialize = function() {
 	return {
@@ -27,8 +21,7 @@ bubbleUpPostSchema.methods.serialize = function() {
 		category: this.category,
 		contentType: this.contentType,
 		content: this.content,
-		created: this.created,
-		// html: this.html
+		created: this.created
 	};
 };
 
