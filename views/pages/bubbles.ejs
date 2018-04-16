@@ -41,7 +41,13 @@
                                 </div>
                             </form>
                         </div>
-                        <a class="filter">filter</a>
+                    </div>
+                    <div class="filter">
+                        <form>
+                            <label for="filter">Filter by tag:</label>
+                            <input type="text" placeholder="ex. lorem ipsum" name="filter" id="filter">
+                            <input type="submit" class="filterButton" value="Search">
+                        </form>
                     </div>
                 </div>
 
@@ -51,8 +57,6 @@
 
             </div>
         </div><!-- end of content -->
-
-        <% include ../partials/footer %>
 
         <% include ../partials/scripts %>
 

@@ -10,6 +10,7 @@ state = {
     bubbles: []
 };
 
+
 // Call API functions
 function getBubbles() {
     fetch('/bubbles', {
@@ -18,6 +19,23 @@ function getBubbles() {
     })
     .then(response => response.json())
     .then(bubbles => displayBubbles(bubbles))
+    .catch(error => console.log(error));
+};
+
+function filterBubble(category) {
+    const options = {
+        method: "GET",
+        headers: { 'Content-Type': 'application/json'}
+    }
+    fetch(`/bubbles/${category}`, options)
+    .then(response => {
+        console.log("tTESTESTESTSETSTEST");
+        return response.json()
+    })
+    .then(bubbles => {
+        console.log(bubbles);
+        displayBubbles(bubbles)
+    })
     .catch(error => console.log(error));
 };
 
@@ -33,6 +51,7 @@ function createBubble(newBubble) {
     .then(bubble => displayNewBubble(bubble))
     .catch(error => console.log(error));
 };
+
 
 function displayNewBubble(data) {
     console.log(data);
@@ -168,6 +187,7 @@ function deleteBubble(bubbleId) {
 
 // display data from API
 function displayBubbles(data) {
+    $('.bubbles').html("");
     for (index in data) {
         if (data[index].content.includes('https://www.youtube.com')) {
             let videoID = data[index].content.split("v=")[1];
@@ -288,8 +308,6 @@ $(document).on('click', '.editBubble', function() {
     closeAll();
     $(this).closest('div').siblings('.dialog').show(400);
     //$(this).next(".dialog").show(500);
-    console.log('click')
-
     $(".btnCANCEL").click(function(){
         $(this).closest(".dialog").hide(400);
     });
@@ -348,3 +366,13 @@ $(document).on('submit', '.createForm', function() {
     $(this).closest('.createform').hide(400);
 });
 
+//filterBubble
+$(document).on('click', '.filterButton', function() {
+    event.preventDefault();
+    filter = $(`#filter`).val().toLowerCase().trim();
+    filterBubble(filter);
+});
+
+//// Get by value
+
+// db.restaurants.find({borough: "Queens"});

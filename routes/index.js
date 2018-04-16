@@ -19,21 +19,21 @@ module.exports = function(app) {
     		});
 	});
 	
-    app.get('/bubbles/:id', (req, res) => {
-    	BubbleUpPost
-    		.findById(req.params.id)
-    		.then(bubble => res.json(bubble.serialize()))
-    		.catch(err => {
-    			res.status(500).json({ message: 'Internal server error' });
-    		});
-	});
+    // app.get('/bubbles/:id', (req, res) => {
+    // 	BubbleUpPost
+    // 		.findById(req.params.id)
+    // 		.then(bubble => res.json(bubble.serialize()))
+    // 		.catch(err => {
+    // 			res.status(500).json({ message: 'Internal server error' });
+    // 		});
+	// });
 	
-	app.get('/bubbles/category/:category', (req, res) => {
+	app.get('/bubbles/:category', (req, res) => {
     	BubbleUpPost
-			.find({category: req.params.category})
+			.find()
     		.then(bubbles => {
-				const filtered = bubbles.filter(bubble => bubble.category === req.params.category)
-				res.json(filtered.serialize())
+				const filtered = bubbles.filter(bubble => bubble.category.toLowerCase().includes(req.params.category.toLowerCase().trim()));
+				res.json(filtered.map(bubble => bubble.serialize()));
 			})
     		.catch(err => {
     			res.status(500).json({ message: 'Internal server error' });
