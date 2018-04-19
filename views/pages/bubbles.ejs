@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <% include ../partials/head %>
+
+    <body>
+
+        <% include ../partials/nav %>
+
+        <!-- content for bubbles page -->
+        <div class="container" id="bubbles">
+            <div class="row">
+                <h2 class="text-center">Bubbles</h2>
+                <div class="col-xs-12">
+                    <div id="createpanel">
+                        <a href="#" class="createBubble">+</a>
+                        <div class="createform" id="createform" tabindex="-1" data-backdrop="false">
+                            <form class="createForm">
+                                <label id="createModal">Create Bubble
+                                </label>
+                                <br>
+                                <div class="splitModal col-xs-6 leftModal">
+                                    <label for="title">Title:</label>
+                                    <input type="text" placeholder="Friday Plans" name="title" id="title" required>
+                                </div>
+                                <div class="splitModal col-xs-6 rightModal">
+                                    <label for="category">Category:</label>
+                                    <input type="text" placeholder="Reminder" name="category" id="category" required>
+                                </div>
+                                <label for="content">Content:</label>
+                                <textarea type="text" rows="4" placeholder="Potluck dinner at 6:30pm" name="content" id="content" class ="col-xs-12" required></textarea>
+                                <label for="contentType">Content Type:</label>
+                                <select type="text" name="contentType" id="contentType">
+                                    <option>Text/markdown</option>
+                                    <option>Image</option>
+                                    <option>Url</option>
+                                </select>
+                                <div align="center">
+                                    <input type="submit" value="Create" class="btnCREATE">
+                                    <input type="button" value="Cancel" class="btnCANCEL">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="filter">
+                        <form>
+                            <label for="filter">Filter by tag:</label>
+                            <input type="text" placeholder="ex. lorem ipsum" name="filter" id="filter">
+                            <input type="submit" class="filterButton" value="Search">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="bubbles">
+                    
+                </div>
+
+            </div>
+        </div><!-- end of content -->
+
+        <% include ../partials/scripts %>
+
+    </body>
+</html>
