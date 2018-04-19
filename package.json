@@ -4,13 +4,21 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "date-fns": "^1.29.0",
+    "ejs": "^2.4.1",
     "express": "^4.16.2",
-    "nodemon": "^1.14.11"
+    "marked": "^0.3.12",
+    "mongoose": "^4.7.1",
+    "morgan": "^1.7.0",
+    "nodemon": "^1.14.11",
+    "uuid": "^2.0.3"
   },
   "devDependencies": {
     "mocha": "^4.1.0",
     "chai": "^4.1.2",
-    "chai-http": "^3.0.0"
+    "chai-http": "^3.0.0",
+    "faker": "^3.1.0"
   },
   "scripts": {
     "test": "mocha --exit ./test",
