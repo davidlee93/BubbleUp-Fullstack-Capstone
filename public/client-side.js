@@ -39,7 +39,6 @@ function filterBubble(category) {
 };
 
 function createBubble(newBubble) {
-    console.log(newBubble);
     const options = {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
