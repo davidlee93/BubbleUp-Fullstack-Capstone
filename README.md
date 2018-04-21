@@ -232,7 +232,7 @@ Front Page:
 ![alt text](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/frontpage.png)
 
 Create Bubble Modal:
-![alt text](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/create.png)
+![alt text](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/Create.png)
 
 Edit Bubble Modal:
 ![alt text](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/edit.png)
