@@ -229,16 +229,16 @@ Delete bubbles
 ### Screenshots
 
 Front Page:
-![alt text](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/frontpage.png)
+![front page screenshot](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/frontpage.png)
 
 Create Bubble Modal:
-![alt text](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/Create.png)
+![create bubble modal screenshot](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/Create.png)
 
 Edit Bubble Modal:
-![alt text](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/edit.png)
+![edit buble modal screenshot](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/edit.png)
 
 Filter Bubbles:
-![alt text](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/filter.png)
+![filtering "lorem ip" example](https://github.com/davidlee93/BubbleUp-FullStack-Capstone/blob/master/filter.png)
 
 ## Technical/Technology
 
