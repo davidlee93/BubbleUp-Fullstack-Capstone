@@ -1,6 +1,6 @@
 # bubbleUp
 
-https://limitless-bayou-99293.herokuapp.com/
+https://bubble-up-app.herokuapp.com/
 
 Thinkful's (https://www.thinkful.com/) Fullstack Capstone Project - A web app using Node and Express to create a backend that serves your static files and a REST API.
 
