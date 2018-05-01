@@ -4,10 +4,14 @@ const { BubbleUpPost } = require('./models');
 
 module.exports = function(app) {
 	app.get('/', function(req, res) {
+        res.render('pages/home');
+	});
+
+	app.get('/bubbles', function(req, res) {
         res.render('pages/bubbles');
 	});
 	
-    app.get('/bubbles', (req, res) => {
+    app.get('/bubbles/all', (req, res) => {
     	BubbleUpPost
     		.find()
     		.limit(100)
@@ -32,7 +36,7 @@ module.exports = function(app) {
 	});
 
     app.post('/bubbles', (req, res) => {
-    	const requiredFields = ['title', 'category', 'content', 'contentType'];
+    	const requiredFields = ['title', 'category', 'content'];
     	for (let i = 0; i < requiredFields.length; i++) {
     		const field = requiredFields[i];
     		if (!(field in req.body)) {
@@ -44,8 +48,7 @@ module.exports = function(app) {
     		.create({
                 title: req.body.title,
     			category: req.body.category,
-    			content: req.body.content,
-                contentType: req.body.contentType
+    			content: req.body.content
     		})
     		.then(bubble => res.status(201).json(bubble.serialize()))
     		.catch(err => {
@@ -71,7 +74,7 @@ module.exports = function(app) {
     		});
     	};
     	const updated = {};
-    	const updateableFields = ['title', 'category', 'content', 'contentType'];
+    	const updateableFields = ['title', 'category', 'content'];
     	updateableFields.forEach(field => {
     		if (field in req.body) {
     			updated[field] = req.body[field];

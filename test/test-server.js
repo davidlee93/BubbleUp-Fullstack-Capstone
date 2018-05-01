@@ -30,8 +30,7 @@ function seedBubbleUpPostData() {
 		seedData.push({
 		title: faker.name.firstName(),
 		category: faker.lorem.sentence(),
-		content: faker.lorem.text(),
-		contentType: "Text/markdown"
+		content: faker.lorem.text()
 		});
 	}
 	return BubbleUpPost.insertMany(seedData);
@@ -59,7 +58,7 @@ describe('bubbleup posts API resource', function () {
 		it('should return all existing bubbles', function() {
 			let res;
 			return chai.request(app)
-				.get('/bubbles')
+				.get('/bubbles/all')
 				.then(_res => {
 					res = _res;
 					res.should.have.status(200);
@@ -74,7 +73,7 @@ describe('bubbleup posts API resource', function () {
 		it('should return bubbles with right fields', function () {
 			let resBubble;
 			return chai.request(app)
-				.get('/bubbles')
+				.get('/bubbles/all')
 				.then(function (res) {
 					res.should.have.status(200);
 					res.should.be.json;
@@ -83,7 +82,7 @@ describe('bubbleup posts API resource', function () {
 
 					res.body.forEach(function (bubble) {
 						bubble.should.be.a('object');
-						bubble.should.include.keys('id', 'category', 'contentType', 'content', 'title', 'created');
+						bubble.should.include.keys('id', 'category', 'content', 'title', 'created');
 					});
 					resBubble = res.body[0];
 					return BubbleUpPost.findById(resBubble.id);
@@ -92,7 +91,6 @@ describe('bubbleup posts API resource', function () {
 					resBubble.category.should.equal(bubble.category);
 					resBubble.content.should.equal(bubble.content);
 					resBubble.title.should.equal(bubble.title);
-					resBubble.contentType.should.equal(bubble.contentType);
 				});
 		});
 	});
@@ -102,8 +100,7 @@ describe('bubbleup posts API resource', function () {
 			const newBubble = {
 				category: faker.lorem.sentence(),
 				title: faker.name.firstName(),
-				content: faker.lorem.text(),
-				contentType: "Text/markdown"
+				content: faker.lorem.text()
 			};
 			return chai.request(app)
 				.post('/bubbles')
@@ -113,19 +110,17 @@ describe('bubbleup posts API resource', function () {
 					res.should.be.json;
 					res.body.should.be.a('object');
 					res.body.should.include.keys(
-						'id', 'category', 'contentType', 'content', 'title', 'created');
+						'id', 'category', 'content', 'title', 'created');
 					res.body.category.should.equal(newBubble.category);
 					res.body.id.should.not.be.null;
 					res.body.title.should.equal(newBubble.title);
 					res.body.content.should.equal(newBubble.content);
-					res.body.contentType.should.equal(newBubble.contentType);
 					return BubbleUpPost.findById(res.body.id);
 				})
 				.then(function (bubble) {
 					bubble.category.should.equal(newBubble.category);
 					bubble.content.should.equal(newBubble.content);
 					bubble.title.should.equal(newBubble.title);
-					bubble.contentType.should.equal(newBubble.contentType);
 				});
 		});
 
@@ -165,8 +160,7 @@ describe('bubbleup posts API resource', function () {
 			const updateData = {
 				category: 'cats cats cats',
 				content: 'dogs dogs dogs',
-				title: 'house pets',
-				contentType: 'Text/markdown'
+				title: 'house pets'
 			};
 
 			return BubbleUpPost
@@ -185,7 +179,6 @@ describe('bubbleup posts API resource', function () {
 					bubble.category.should.equal(updateData.category);
 					bubble.content.should.equal(updateData.content);
 					bubble.title.should.equal(updateData.title);
-					bubble.contentType.should.equal(updateData.contentType);
 				});
 		});
 	});

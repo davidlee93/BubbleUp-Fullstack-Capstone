@@ -3,8 +3,7 @@ state = {
     currentBubble: {
         title: '',
         category: '',
-        content: '',
-        contentType: ''
+        content: ''
     },
     bubbles: []
 };
@@ -12,7 +11,7 @@ state = {
 
 // Call API functions
 function getBubbles() {
-    fetch('/bubbles', {
+    fetch('/bubbles/all', {
         method: "GET",
         headers: { 'Content-Type': 'application/json'}
     })
@@ -28,7 +27,7 @@ function filterBubble(category) {
     }
     fetch(`/bubbles/${category}`, options)
     .then(response => {
-        console.log("tTESTESTESTSETSTEST");
+        console.log("TEST");
         return response.json()
     })
     .then(bubbles => {
@@ -79,17 +78,11 @@ function displayNewBubble(data) {
                     <input type="text" id="${data.id}" name="title" class="title col-xs-12" value="${data.title}">
                     </div>
                     <div class="splitModal col-xs-6 rightModal">
-                    <label for="category">Category:</label>
+                    <label for="category">Tag:</label>
                     <input type="text" id="${data.id}" name="category" class="category col-xs-12" value="${data.category}">
                     </div>
                     <label for="content">Content:</label>
                     <textarea type="text" rows="4" cols="42" id="${data.id}" name="content" class="content col-xs-12">${data.content}</textarea>
-                    <label for="contentType">Content Type:</label>
-                    <select type="text" id="${data.id}" name="contentType" class="contentType" value="${data.contentType}">
-                        <option>Text/markdown</option>
-                        <option>Image</option>
-                        <option>Url</option>
-                    </select>
                     <div align="center">
                         <input type="submit" value="Edit" class="btnOK" data-id="${data.id}">
                         <input type="button" value="Cancel" class="btnCANCEL">
@@ -128,17 +121,11 @@ function displayNewBubble(data) {
                     <input type="text" id="${data.id}" name="title" class="title col-xs-12" value="${data.title}">
                     </div>
                     <div class="splitModal col-xs-6 rightModal">
-                    <label for="category">Category:</label>
+                    <label for="category">Tag:</label>
                     <input type="text" id="${data.id}" name="category" class="category col-xs-12" value="${data.category}">
                     </div>
                     <label for="content">Content:</label>
                     <textarea type="text" rows="4" cols="42" id="${data.id}" name="content" class="content col-xs-12">${data.content}</textarea>
-                    <label for="contentType">Content Type:</label>
-                    <select type="text" id="${data.id}" name="contentType" class="contentType" value="${data.contentType}">
-                        <option>Text/markdown</option>
-                        <option>Image</option>
-                        <option>Url</option>
-                    </select>
                     <div align="center">
                         <input type="submit" value="Edit" class="btnOK" data-id="${data.id}">
                         <input type="button" value="Cancel" class="btnCANCEL">
@@ -209,17 +196,12 @@ function displayBubbles(data) {
                         <input type="text" id="${data[index].id}" name="title" class="title col-xs-12" value="${data[index].title}">
                         </div>
                         <div class="splitModal col-xs-6 rightModal">
-                        <label for="category">Category:</label>
+                        <label for="category">Tag:</label>
                         <input type="text" id="${data[index].id}" name="category" class="category col-xs-12" value="${data[index].category}">
                         </div>
                         <label for="content">Content:</label>
                         <textarea type="text" rows="4" cols="42" id="${data[index].id}" name="content" class="content col-xs-12">${data[index].content}</textarea>
                         <label for="contentType">Content Type:</label>
-                        <select type="text" id="${data[index].id}" name="contentType" class="contentType" value="${data[index].contentType}">
-                            <option>Text/markdown</option>
-                            <option>Image</option>
-                            <option>Url</option>
-                        </select>
                         <div align="center">
                             <input type="submit" value="Edit" class="btnOK" data-id="${data[index].id}">
                             <input type="button" value="Cancel" class="btnCANCEL">
@@ -258,17 +240,11 @@ function displayBubbles(data) {
                         <input type="text" id="${data[index].id}" name="title" class="title col-xs-12" value="${data[index].title}">
                         </div>
                         <div class="splitModal col-xs-6 rightModal">
-                        <label for="category">Category:</label>
+                        <label for="category">Tag:</label>
                         <input type="text" id="${data[index].id}" name="category" class="category col-xs-12" value="${data[index].category}">
                         </div>
                         <label for="content">Content:</label>
                         <textarea type="text" rows="4" cols="42" id="${data[index].id}" name="content" class="content col-xs-12">${data[index].content}</textarea>
-                        <label for="contentType">Content Type:</label>
-                        <select type="text" id="${data[index].id}" name="contentType" class="contentType" value="${data[index].contentType}">
-                            <option>Text/markdown</option>
-                            <option>Image</option>
-                            <option>Url</option>
-                        </select>
                         <div align="center">
                             <input type="submit" value="Edit" class="btnOK" data-id="${data[index].id}">
                             <input type="button" value="Cancel" class="btnCANCEL">
@@ -311,8 +287,7 @@ $(document).on('click', '.btnOK', function() {
     const updates = {
         "title": $(`#${bubbleId}.title`).val(),
         "category": $(`#${bubbleId}.category`).val(),
-        "content": $(`#${bubbleId}.content`).val(),
-        "contentType": $(`#${bubbleId}.contentType`).val()
+        "content": $(`#${bubbleId}.content`).val()
     };
     state.currentBubble = updates;
     console.log(state.currentBubble);
@@ -350,8 +325,7 @@ $(document).on('submit', '.createForm', function() {
     const create = {
         "title": $(`#title`).val(),
         "category": $(`#category`).val(),
-        "content": $(`#content`).val(),
-        "contentType": $(`#contentType`).val()
+        "content": $(`#content`).val()
     };
     state.currentBubble = create;
     createBubble(state.currentBubble);

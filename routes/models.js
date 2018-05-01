@@ -7,7 +7,6 @@ mongoose.Promise = global.Promise;
 const bubbleUpPostSchema = mongoose.Schema({
 	title: {type: String, require: true},
 	category: {type: String, required: true},
-	contentType: {type: String},
 	content: {type: String, required: true},
 	created: {type: Date, default: format(
 									  new Date(),
@@ -19,7 +18,6 @@ bubbleUpPostSchema.methods.serialize = function() {
 		id: this._id,
 		title: this.title,
 		category: this.category,
-		contentType: this.contentType,
 		content: this.content,
 		created: this.created
 	};
