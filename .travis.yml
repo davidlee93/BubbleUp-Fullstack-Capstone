@@ -6,6 +6,6 @@ deploy:
   provider: heroku
   api_key:
     secure: STtAfJ17dFw/OT1ADNQuFOfi5ruNs5Sq/f6oJtzf3DoGXJQjTaKr4oZ8bvkpAnY2bLIoi3HE0pvby3YhkDWO9p17MUx3D5HgU71YvCRuIT3+Swmqy6I8AFvEE2sK61hJqmI3iH3vjoeagY5mCYNbmaIHlyPqa+6s+N77OLjcyILyWIdL0V0irctYm9r7RtmXV+0DDXfPTOBtmrYqFZyUJ32ML3ijjbgzsvlvNX/3AMoWkwCHpFc2PqxhztR9sJfb9Lv4lvPeYqBffxjDBIiEMI6S29k4PM/+gvBozcuWwA/l6i/NhHxoQjaw3e+WT7wD51Bise/+hfc1ExD8DBr+7XqrM7Px4rmVEXh6SiPZ2gSGVpkgjd0+ScMkjh6BRiRIn2QdQv3MWntYuZ/gtIrlob4Cd/i/q1qTR27swOxIVg2IY+Jh2Wa918c2+/4/WAjm/fNPMyNoJMlRsNlA8uv+QZ9hV3bSybRraX8Bvtat9Ate6a7gbBKswBysrS+lPHgdE4HhR723CMAK2snI4Im0g3NHw6y+Sk6eD7vqNsRwcuHojqiXcybN1GJQ5/zuYyq/r1KWpY1q5UYyZrYIOJYzY/tIVf1rzcJVyu7+9uDFH94f1SWUvbHJB/YNrcR9qhdZTSkwf2zUlZw8RwurV0oxNEe4cyWJMfliVovN1m7KSd0=
-  app: limitless-bayou-99293
+  app: bubble-up-app
   on:
     repo: davidlee93/BubbleUp-Fullstack-Capstone
